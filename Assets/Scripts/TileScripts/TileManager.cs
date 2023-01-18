@@ -1,0 +1,28 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.WSA;
+
+public static class TileManager
+{
+    public static List<List<AbstractTile>> Tiles { get; private set; }
+
+    public static AbstractTile GetTileFromId(Vector2Int id)
+    {
+        if (Tiles.Count <= id.x || Tiles[0].Count <= id.y) throw new SystemException("Wrong id");
+        return Tiles[id.x][id.y];
+    }
+
+    public static PlayerInstance GetTileOwnerFromId(Vector2Int id)
+    {
+        AbstractTile tile = GetTileFromId(id);
+        if (tile == null) throw new SystemException("Wrong id");
+        return tile.PlayerInstance;
+    }
+
+    public static void Setup(List<List<AbstractTile>> initialTiles)
+    {
+        Tiles = initialTiles;
+    }
+}

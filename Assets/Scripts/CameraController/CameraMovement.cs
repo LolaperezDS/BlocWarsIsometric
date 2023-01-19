@@ -13,17 +13,24 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private float deltaMovementX;
     [SerializeField] private float deltaMovementY;
-
-    [SerializeField] private Vector3 continiousPosition;
+    [SerializeField] private float localPosX;
+    [SerializeField] private float localPosY;
+    [SerializeField] private float localToGlobalX;
+    [SerializeField] private float localToGlobalY;
 
     private void Update()
     {
         deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
-        deltaMovementY = deltaMovementX / Mathf.Cos(20 * Mathf.Deg2Rad);
+        deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
 
         MoveCamera();
         ScaleCamera();
         RotateCam();
+
+        Ray camDirOfView = new Ray();
+        camDirOfView.direction = Vector3.forward;
+        camDirOfView.origin = transform.position;
+        Debug.DrawRay(camDirOfView.origin, camDirOfView.direction, Color.red);
     }
 
 
@@ -31,22 +38,25 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(2))
         {
-            if (lastPositionMouse != new Vector2(0, 0))
+            if (lastPositionMouse != Vector2.zero)
             {
-                continiousPosition += new Vector3((lastPositionMouse.x - Input.mousePosition.x), 0, (lastPositionMouse.y - Input.mousePosition.y)) * sense / deltaFactor;
 
+                localPosX += (lastPositionMouse.x - Input.mousePosition.x) * sense / deltaFactor;
+                localPosY += (lastPositionMouse.y - Input.mousePosition.y) * sense / deltaFactor;
 
+                localToGlobalX = Mathf.Floor(localPosX / deltaMovementX) * deltaMovementX * Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad) +
+                                 Mathf.Floor(localPosY / deltaMovementY) * deltaMovementY * Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
+                localToGlobalY = Mathf.Floor(localPosY / deltaMovementY) * deltaMovementY * Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad) +
+                                 Mathf.Floor(localPosX / deltaMovementX) * deltaMovementX * -Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
 
-                transform.position = new Vector3(Mathf.Floor(continiousPosition.x / deltaMovementX) * deltaMovementX,
-                                                 transform.position.y,
-                                                 Mathf.Floor(continiousPosition.z / deltaMovementY) * deltaMovementY);
+                transform.position = new Vector3(localToGlobalX, transform.position.y, localToGlobalY);
             }
             lastPositionMouse = Input.mousePosition;
         }
 
         if (Input.GetMouseButtonUp(2))
         {
-            lastPositionMouse = new Vector2(0, 0);
+            lastPositionMouse = Vector2.zero;
         }
     }
 
@@ -64,6 +74,7 @@ public class CameraMovement : MonoBehaviour
 
     private void RotateCam()
     {
-
+        if (Input.GetKeyDown(KeyCode.D)) transform.Rotate(0, -45, 0, Space.World);
+        else if (Input.GetKeyDown(KeyCode.A)) transform.Rotate(0, 45, 0, Space.World);
     }
 }

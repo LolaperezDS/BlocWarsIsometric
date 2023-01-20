@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 public enum PlayerInstance
 {
     Red,
@@ -5,4 +6,12 @@ public enum PlayerInstance
     Green,
     Yellow,
     Empty
+}
+
+public static class PlayerInstanceMethods
+{
+    public  static List<PlayerInstance> GetPlayers()
+    {
+        return new List<PlayerInstance> ( new [] {PlayerInstance.Red, PlayerInstance.Blue, PlayerInstance.Green, PlayerInstance.Yellow});
+    }
 }

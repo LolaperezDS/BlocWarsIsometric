@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CameraMovement : MonoBehaviour
 {
-    private Vector2 lastPositionMouse = new Vector2(0, 0);
+    private Vector2 lastPositionMouse = Vector2.zero;
     [SerializeField] public float sense = 10f;
     [SerializeField] public float scaleSense = 100f;
+    [SerializeField] public float rotationSpeed = 100f;
 
     // constants
     private float deltaFactor = 1000f;
@@ -18,19 +21,15 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float localToGlobalX;
     [SerializeField] private float localToGlobalY;
 
+    //Rotation
+    [SerializeField] private float angleTarget = 0;
+
     private void Update()
     {
-        deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
-        deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
-
         MoveCamera();
         ScaleCamera();
-        RotateCam();
-
-        Ray camDirOfView = new Ray();
-        camDirOfView.direction = Vector3.forward;
-        camDirOfView.origin = transform.position;
-        Debug.DrawRay(camDirOfView.origin, camDirOfView.direction, Color.red);
+        RotateInput();
+        RotationTranslator();
     }
 
 
@@ -38,6 +37,9 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(2))
         {
+            deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
+            deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
+
             if (lastPositionMouse != Vector2.zero)
             {
 
@@ -72,9 +74,31 @@ public class CameraMovement : MonoBehaviour
     }
 
 
-    private void RotateCam()
+    private void RotateInput()
     {
-        if (Input.GetKeyDown(KeyCode.D)) transform.Rotate(0, -45, 0, Space.World);
-        else if (Input.GetKeyDown(KeyCode.A)) transform.Rotate(0, 45, 0, Space.World);
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            angleTarget -= 45;
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            angleTarget += 45;
+        }
+        if (angleTarget >= 360) angleTarget -= 360;
+        if (angleTarget < 0) angleTarget += 360;
+
+        RotationTranslator();
+    }
+
+
+    private void RotationTranslator()
+    {
+        if (Mathf.Abs(angleTarget - transform.rotation.eulerAngles.y) < 0.49)
+        {
+            transform.Rotate(0, Mathf.Round(transform.rotation.eulerAngles.y) - transform.rotation.eulerAngles.y, 0, Space.World);
+        }
+        else if (angleTarget < transform.rotation.eulerAngles.y || transform.rotation.eulerAngles.y - 360 - angleTarget <= 45) transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
+        else if (angleTarget > transform.rotation.eulerAngles.y || angleTarget - 360 - transform.rotation.eulerAngles.y <= 45) transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
     }
 }
+

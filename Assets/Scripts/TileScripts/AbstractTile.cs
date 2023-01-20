@@ -21,12 +21,5 @@ public abstract class AbstractTile : MonoBehaviour
         this.tileType = tileStatement.tileType;
     }
 
-    public TileStatement GetStatement()
-    {
-        TileStatement statement;
-        statement.id = this.Id;
-        statement.tileType = this.TileType;
-        statement.player = this.PlayerInstance;
-        return statement;
-    }
+    public TileStatement Statement() => new TileStatement(this.Id, this.TileType, this.PlayerInstance);
 }

@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.WSA;
+using System;
+using System.Collections.Generic;
 
 public static class TileManager
 {

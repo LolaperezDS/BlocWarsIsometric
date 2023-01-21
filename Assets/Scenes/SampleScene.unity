@@ -901,15 +901,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sense: 10
-  scaleSense: 100
-  rotationSpeed: 100
+  rotationSpeed: 200
   deltaMovementX: 0
   deltaMovementY: 0
   localPosX: 0
   localPosY: 0
   localToGlobalX: 0
   localToGlobalY: 0
+  globalXOffset: 0
+  globalYOffset: 0
   angleTarget: 0
+  inRotation: 0
 --- !u!1 &1337306446
 GameObject:
   m_ObjectHideFlags: 0

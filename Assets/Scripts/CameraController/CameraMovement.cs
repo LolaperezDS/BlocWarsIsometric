@@ -1,28 +1,48 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class CameraMovement : MonoBehaviour
 {
     private Vector2 lastPositionMouse = Vector2.zero;
-    [SerializeField] public float sense = 10f;
-    [SerializeField] public float scaleSense = 100f;
-    [SerializeField] public float rotationSpeed = 100f;
+    [SerializeField] public float sense;
+    [SerializeField] public float rotationSpeed;
 
     // constants
     private float deltaFactor = 1000f;
+    private float mouseScrollMultiplier = 0.2f;
 
-    private float mouseScrollMultiplayer = 0.2f;
-
+    // Move
     [SerializeField] private float deltaMovementX;
     [SerializeField] private float deltaMovementY;
     [SerializeField] private float localPosX;
     [SerializeField] private float localPosY;
     [SerializeField] private float localToGlobalX;
     [SerializeField] private float localToGlobalY;
+    [SerializeField] private float globalXOffset = 0;
+    [SerializeField] private float globalYOffset = 0;
 
-    //Rotation
+    // Rotation
     [SerializeField] private float angleTarget = 0;
+    [SerializeField] private bool inRotation = false;
+    private float deltaAngle = 0;
+
+    // Scale
+    private float mouseScrollDelta;
+    private float upperLimitOfScale = 10f;
+    private float lowerLimitOfScale = 2f;
+
+    // Optimization Variables
+    private float senseDividedByDeltaFactor;
+    private float cosYrot;
+    private float sinYrot;
+    private float discreteLocalX;
+    private float discreteLocalY;
+
+
+    private void Start()
+    {
+        deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
+        deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
+    }
 
     private void Update()
     {
@@ -37,68 +57,77 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(2))
         {
-            deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
-            deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
-
-            if (lastPositionMouse != Vector2.zero)
+            if (lastPositionMouse != Vector2.zero && !inRotation)
             {
+                senseDividedByDeltaFactor = sense / deltaFactor;
+                cosYrot = Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
+                sinYrot = Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
 
-                localPosX += (lastPositionMouse.x - Input.mousePosition.x) * sense / deltaFactor;
-                localPosY += (lastPositionMouse.y - Input.mousePosition.y) * sense / deltaFactor;
+                localPosX += (lastPositionMouse.x - Input.mousePosition.x) * senseDividedByDeltaFactor;
+                localPosY += (lastPositionMouse.y - Input.mousePosition.y) * senseDividedByDeltaFactor;
 
-                localToGlobalX = Mathf.Floor(localPosX / deltaMovementX) * deltaMovementX * Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad) +
-                                 Mathf.Floor(localPosY / deltaMovementY) * deltaMovementY * Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
-                localToGlobalY = Mathf.Floor(localPosY / deltaMovementY) * deltaMovementY * Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad) +
-                                 Mathf.Floor(localPosX / deltaMovementX) * deltaMovementX * -Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
+                discreteLocalX = Mathf.Floor(localPosX / deltaMovementX) * deltaMovementX;
+                discreteLocalY = Mathf.Floor(localPosY / deltaMovementY) * deltaMovementY;
+
+                localToGlobalX = discreteLocalX * cosYrot + discreteLocalY * sinYrot + globalXOffset;
+                localToGlobalY = discreteLocalY * cosYrot + discreteLocalX * -sinYrot + globalYOffset;
 
                 transform.position = new Vector3(localToGlobalX, transform.position.y, localToGlobalY);
             }
             lastPositionMouse = Input.mousePosition;
         }
-
-        if (Input.GetMouseButtonUp(2))
-        {
-            lastPositionMouse = Vector2.zero;
-        }
+        if (Input.GetMouseButtonUp(2)) lastPositionMouse = Vector2.zero;
     }
 
 
     private void ScaleCamera()
     {
-        float mouseScrollDelta = Input.mouseScrollDelta.y;
-
-        if (true)
+        mouseScrollDelta = -Input.mouseScrollDelta.y * mouseScrollMultiplier;
+        if (mouseScrollDelta > 0 && upperLimitOfScale >= GetComponent<Camera>().orthographicSize)
         {
-            GetComponent<Camera>().orthographicSize -= mouseScrollDelta * mouseScrollMultiplayer;
+            GetComponent<Camera>().orthographicSize += mouseScrollDelta;
+        }
+        else if (mouseScrollDelta < 0 && lowerLimitOfScale <= GetComponent<Camera>().orthographicSize)
+        {
+            GetComponent<Camera>().orthographicSize += mouseScrollDelta;
+        }
+        if (mouseScrollDelta != 0)
+        {
+            deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
+            deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
         }
     }
 
 
     private void RotateInput()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            angleTarget -= 45;
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            angleTarget += 45;
-        }
+        if (Input.GetKeyDown(KeyCode.D)) angleTarget -= 45;
+        else if (Input.GetKeyDown(KeyCode.A)) angleTarget += 45;
+
         if (angleTarget >= 360) angleTarget -= 360;
         if (angleTarget < 0) angleTarget += 360;
-
-        RotationTranslator();
     }
 
 
     private void RotationTranslator()
     {
-        if (Mathf.Abs(angleTarget - transform.rotation.eulerAngles.y) < 0.49)
+        inRotation = false;
+        deltaAngle = Mathf.Abs(angleTarget - transform.rotation.eulerAngles.y);
+        if (deltaAngle < 0.49) transform.Rotate(0, Mathf.Round(transform.rotation.eulerAngles.y) - transform.rotation.eulerAngles.y, 0, Space.World);
+
+        else if (angleTarget < 180 && transform.rotation.eulerAngles.y > 180) transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
+        else if (angleTarget > 180 && transform.rotation.eulerAngles.y < 180) transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
+
+        else if (angleTarget > transform.rotation.eulerAngles.y) transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
+        else if (angleTarget < transform.rotation.eulerAngles.y) transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
+
+        if (deltaAngle > 0.49)
         {
-            transform.Rotate(0, Mathf.Round(transform.rotation.eulerAngles.y) - transform.rotation.eulerAngles.y, 0, Space.World);
+            inRotation = true;
+            globalYOffset = localToGlobalY;
+            localPosY = 0;
+            globalXOffset = localToGlobalX;
+            localPosX = 0;
         }
-        else if (angleTarget < transform.rotation.eulerAngles.y || transform.rotation.eulerAngles.y - 360 - angleTarget <= 45) transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
-        else if (angleTarget > transform.rotation.eulerAngles.y || angleTarget - 360 - transform.rotation.eulerAngles.y <= 45) transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
     }
 }
-

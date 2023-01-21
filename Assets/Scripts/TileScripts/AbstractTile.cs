@@ -10,7 +10,7 @@ public abstract class AbstractTile : MonoBehaviour
     public bool Selected { get; protected set; } = false;
 
     [SerializeField] protected TileType tileType;
-    public TileType TileType => tileType;
+    public TileType Type => tileType;
 
     public abstract bool AttachTile(PlayerInstance playerInstance);
 
@@ -21,5 +21,5 @@ public abstract class AbstractTile : MonoBehaviour
         this.tileType = tileStatement.tileType;
     }
 
-    public TileStatement Statement() => new TileStatement(this.Id, this.TileType, this.PlayerInstance);
+    public TileStatement Statement() => new TileStatement(this.Id, this.Type, this.PlayerInstance);
 }

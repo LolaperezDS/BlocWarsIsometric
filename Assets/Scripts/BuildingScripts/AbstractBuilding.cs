@@ -11,7 +11,7 @@ public abstract class AbstractBuilding : MonoBehaviour
     public bool Selected { get; private set; } = false;
 
     [SerializeField] protected BuildingType buildingType;
-    public BuildingType BuildingType => buildingType;
+    public BuildingType Type => buildingType;
 
     [SerializeField] protected int health;
     public int Health => health;
@@ -34,5 +34,5 @@ public abstract class AbstractBuilding : MonoBehaviour
         this.health = buildingStatement.health;
     }
 
-    public BuildingStatement Statement() => new BuildingStatement(this.Id, this.BuildingType, this.PlayerInstance, this.Health);
+    public BuildingStatement Statement() => new BuildingStatement(this.Id, this.Type, this.PlayerInstance, this.Health);
 }

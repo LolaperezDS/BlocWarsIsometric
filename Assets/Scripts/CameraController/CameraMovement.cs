@@ -23,7 +23,8 @@ public class CameraMovement : MonoBehaviour
     // Rotation
     [SerializeField] private float angleTarget = 0;
     [SerializeField] private bool inRotation = false;
-    private float deltaAngle = 0;
+    [SerializeField] private float deltaAngle = 0;
+    [SerializeField] private float currentRotSpeed;
 
     // Scale
     private float mouseScrollDelta;
@@ -40,6 +41,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
+
         deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
         deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
     }
@@ -51,7 +53,6 @@ public class CameraMovement : MonoBehaviour
         RotateInput();
         RotationTranslator();
     }
-
 
     private void MoveCamera()
     {
@@ -113,13 +114,14 @@ public class CameraMovement : MonoBehaviour
     {
         inRotation = false;
         deltaAngle = Mathf.Abs(angleTarget - transform.rotation.eulerAngles.y);
+        currentRotSpeed = LogCurve(deltaAngle) * rotationSpeed;
         if (deltaAngle < 0.49) transform.Rotate(0, Mathf.Round(transform.rotation.eulerAngles.y) - transform.rotation.eulerAngles.y, 0, Space.World);
 
-        else if (angleTarget < 180 && transform.rotation.eulerAngles.y > 180) transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
-        else if (angleTarget > 180 && transform.rotation.eulerAngles.y < 180) transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
+        else if (angleTarget < 180 && transform.rotation.eulerAngles.y > 180) transform.Rotate(0, currentRotSpeed * Time.deltaTime, 0, Space.World);
+        else if (angleTarget > 180 && transform.rotation.eulerAngles.y < 180) transform.Rotate(0, -currentRotSpeed * Time.deltaTime, 0, Space.World);
 
-        else if (angleTarget > transform.rotation.eulerAngles.y) transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
-        else if (angleTarget < transform.rotation.eulerAngles.y) transform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
+        else if (angleTarget > transform.rotation.eulerAngles.y) transform.Rotate(0, currentRotSpeed * Time.deltaTime, 0, Space.World);
+        else if (angleTarget < transform.rotation.eulerAngles.y) transform.Rotate(0, -currentRotSpeed * Time.deltaTime, 0, Space.World);
 
         if (deltaAngle > 0.49)
         {
@@ -129,5 +131,14 @@ public class CameraMovement : MonoBehaviour
             globalXOffset = localToGlobalX;
             localPosX = 0;
         }
+    }
+
+    private float LogCurve(float x)
+    {
+        if (x > 315)
+        {
+            return Mathf.Log(361 - x, 45) + 0.25f;
+        }
+        return Mathf.Log(x + 1, 45) + 0.25f;
     }
 }

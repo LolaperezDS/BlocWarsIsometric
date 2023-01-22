@@ -6,7 +6,7 @@ public static class CameraRaycastHandler
 
     private static void Setup()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera").gameObject;
+        camera = GameObject.FindGameObjectWithTag("ParentCam").gameObject;
     }
 
     public static Ray InvokeRay() => CraftRay(Input.mousePosition);

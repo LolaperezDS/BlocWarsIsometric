@@ -1,7 +1,7 @@
 Shader "Hidden/Bloom"
 {
     Properties {
-        _MainTex ("Texture", 2D) = "white" {}
+        [HDR]_MainTex ("Texture", 2D) = "white" {}
         _Thresthold("Thresthold", range(0, 1)) = 0.8
         _Glow ("Intensity", Range(0, 100)) = 1
         _SizeBloom("Size", float) = 10
@@ -41,11 +41,17 @@ Shader "Hidden/Bloom"
 
             
             fixed4 clampOffTexture(float2 uv){
-                fixed4 tcol = tex2D(_MainTex, uv) - _Thresthold;
-                if (tcol.r < 0 || tcol.b < 0 || tcol.g < 0) {
-                    return 0;
+                fixed4 tcol = (tex2D(_MainTex, uv) - _Thresthold) / (1 - _Thresthold);
+                if (tcol.r < 0) {
+                    tcol.r = 0;
                 }
-                return tcol / (1 - _Thresthold);
+                if (tcol.b < 0) {
+                    tcol.b = 0;
+                }
+                if (tcol.g < 0) {
+                    tcol.g = 0;
+                }
+                return tcol;
             }
 
             fixed4 gausBlur(v2f v){

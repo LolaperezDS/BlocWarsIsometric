@@ -41,7 +41,6 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-
         deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
         deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
     }
@@ -135,10 +134,8 @@ public class CameraMovement : MonoBehaviour
 
     private float LogCurve(float x)
     {
-        if (x > 315)
-        {
-            return Mathf.Log(361 - x, 45) + 0.25f;
-        }
+        if (x == 0) return 0.25f;
+        if (x > 315) return Mathf.Log(361 - x, 45) + 0.25f;
         return Mathf.Log(x + 1, 45) + 0.25f;
     }
 }

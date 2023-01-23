@@ -60,7 +60,7 @@ public class CameraMovement : MonoBehaviour
         {
             if (lastPositionMouse != Vector2.zero && !inRotation)
             {
-                senseDividedByDeltaFactor = sense / deltaFactor;
+                senseDividedByDeltaFactor = sense / deltaFactor * GetComponent<Camera>().orthographicSize;
                 cosYrot = Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
                 sinYrot = Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
 

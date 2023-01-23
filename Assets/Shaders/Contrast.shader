@@ -43,6 +43,7 @@ Shader "Hidden/Contrast"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                
                 return 0.5 + _Contrast * (tex2D(_MainTex, i.uv) - 0.5);
             }
             ENDCG

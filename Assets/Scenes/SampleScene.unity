@@ -1151,7 +1151,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.9734509, g: 1, b: 0.7764706, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1537,6 +1537,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: e0b9500a4ad68604c932e7d981e359d9, type: 2}
   - {fileID: 2100000, guid: 217c854876a8c144990a53ff3e0284a7, type: 2}
+  - {fileID: 2100000, guid: 357e7e06de1d9b84ebf02a0f315e9f7a, type: 2}
 --- !u!1 &1003390620
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,8 +3,8 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private Vector2 lastPositionMouse = Vector2.zero;
-    [SerializeField] public float sense;
-    [SerializeField] public float rotationSpeed;
+    public float sense;
+    public float rotationSpeed;
 
     // constants
     private float deltaFactor = 1000f;
@@ -38,10 +38,13 @@ public class CameraMovement : MonoBehaviour
     private float discreteLocalX;
     private float discreteLocalY;
 
+    // Materials
+    [SerializeField] private Material pixelizationShader;
+
 
     private void Start()
     {
-        deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
+        deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / (Screen.height / pixelizationShader.GetFloat("_Pixelization"));
         deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
     }
 
@@ -93,7 +96,7 @@ public class CameraMovement : MonoBehaviour
         }
         if (mouseScrollDelta != 0)
         {
-            deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / 180;
+            deltaMovementX = GetComponent<Camera>().orthographicSize * 2 / (Screen.height / pixelizationShader.GetFloat("_Pixelization"));
             deltaMovementY = deltaMovementX / Mathf.Cos((90 - transform.rotation.eulerAngles.x) * Mathf.Deg2Rad);
         }
     }

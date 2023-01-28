@@ -6,6 +6,8 @@ using UnityEngine;
 public class CameraPostProcessing : MonoBehaviour
 {
     [SerializeField] private List<Material> materials;
+    public List<Material> PostProcessingMaterials => materials;
+
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         RenderTexture r = RenderTexture.GetTemporary(source.width, source.height, 0, source.format);

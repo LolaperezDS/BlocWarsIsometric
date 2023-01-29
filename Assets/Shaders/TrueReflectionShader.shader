@@ -79,9 +79,13 @@ Shader "Hidden/TrueReflectionShader"
                     {
                         col = refcol;
                     }
-                    else
+                    else if (tex2D(_WaterDepth, i.uv + GetDisplacementFromUV(i.uv)).r > tex2D(_CameraDepthTexture, i.uv + GetDisplacementFromUV(i.uv)).r)
                     {
                         col += _WaterColor;
+                    }
+                    else
+                    {
+                        col = tex2D(_MainTex, i.uv) + _WaterColor;
                     }
                 }
                 return col;

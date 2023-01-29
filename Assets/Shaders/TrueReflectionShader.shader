@@ -10,6 +10,7 @@ Shader "Hidden/TrueReflectionShader"
 
         _WaterDisplacement("Water Displacement", 2D) = "white" {}
         _DisplacementMultiplayer("Water Displacement Power", Range(0, 1)) = 0.3
+        _DisplacementSpeed("Water Displacement Speed", Range(0, 10)) = 0.7
     }
     SubShader
     {
@@ -53,9 +54,10 @@ Shader "Hidden/TrueReflectionShader"
             fixed4 _WaterColor;
 
             float _DisplacementMultiplayer;
+            float _DisplacementSpeed;
 
             float2 GetDisplacementFromUV(float2 uv){
-                fixed4 normal = tex2D(_WaterDisplacement, frac(uv + _Time.x));
+                fixed4 normal = tex2D(_WaterDisplacement, frac(uv + _Time.x * _DisplacementSpeed));
                 float2 disp = float2(normal.r, normal.g) - 0.5;
                 return disp * _DisplacementMultiplayer;
             }
@@ -81,9 +83,6 @@ Shader "Hidden/TrueReflectionShader"
                     {
                         col += _WaterColor;
                     }
-                    
-
-                    // ADD DISPLACEMENT
                 }
                 return col;
             }

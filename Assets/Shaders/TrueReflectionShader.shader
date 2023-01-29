@@ -2,9 +2,9 @@ Shader "Hidden/TrueReflectionShader"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        [HDR]_MainTex ("Texture", 2D) = "white" {}
         _WaterDepth("Water depth", 2D) = "white" {}
-        _WaterReflection("Water reflection", 2D) = "white" {}
+        [HDR]_WaterReflection("Water reflection", 2D) = "white" {}
 
         _WaterColor("Water Color", Color) = (0.4, 0.4, 0.1, 1)
 

@@ -46,7 +46,8 @@ Shader "Unlit/HDR_Emiss"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                //UNITY_OUTPUT_DEPTH(i.depth);
+                // UNITY_APPLY_FOG(i.fogCoord, col);
                 return _Color;
             }
             ENDCG

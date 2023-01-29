@@ -23,7 +23,7 @@ public static class BuildingManager
 
     public static ProduceValue GetOverallPlayerProduce(PlayerInstance player)
     {
-        ProduceValue overallProduce = new ProduceValue(0, 0);
+        ProduceValue overallProduce = ProduceValue.zero;
         foreach (var buildingList in Buildings)
         {
             foreach (var building in buildingList)

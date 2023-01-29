@@ -18,4 +18,7 @@ public struct ProduceValue
         this.gold = gold;
         this.actions = actions;
     }
+
+    public static ProduceValue zero => new ProduceValue(0, 0);
+    public static ProduceValue normalized => new ProduceValue(1, 1);
 }

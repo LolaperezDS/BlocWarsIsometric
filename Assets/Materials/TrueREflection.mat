@@ -60,6 +60,10 @@ Material:
         m_Texture: {fileID: 8400000, guid: 016dd07c9632d054ab747502b6d93741, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _WaterDisplacement:
+        m_Texture: {fileID: 2800000, guid: 60241a2d1d20cca459ab72c2b68f8581, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _WaterReflection:
         m_Texture: {fileID: 8400000, guid: 03e7d949e812dd7479c04023220fabe3, type: 2}
         m_Scale: {x: 1, y: 1}
@@ -69,6 +73,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DisplacementMultiplayer: 0.131
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5

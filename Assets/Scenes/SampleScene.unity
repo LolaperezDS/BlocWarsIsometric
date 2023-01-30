@@ -1390,6 +1390,7 @@ MonoBehaviour:
   ColorMoon: {r: 0.4031684, g: 0.41343948, b: 0.5660378, a: 1}
   dayLight: {fileID: 705507994}
   nightLight: {fileID: 1800430047}
+  cloudFactor: 1
 --- !u!4 &316403090
 Transform:
   m_ObjectHideFlags: 0

@@ -32,6 +32,9 @@ public class TimesOfDay : MonoBehaviour
     [SerializeField] private Light dayLight;
     [SerializeField] private Light nightLight;
 
+    [Range(0.1f, 1f)]
+    [SerializeField] private float CloudFactor = 1f;
+
 
     private void Start()
     {
@@ -49,11 +52,14 @@ public class TimesOfDay : MonoBehaviour
 
     private void SetCurrentTime(float t)
     {
-        RenderSettings.ambientLight = new Color(ColorAmbientR.Evaluate(t), ColorAmbientG.Evaluate(t), ColorAmbientB.Evaluate(t));
+        RenderSettings.ambientLight = new Color(ColorAmbientR.Evaluate(t) * cloudFactor, ColorAmbientG.Evaluate(t) * cloudFactor, ColorAmbientB.Evaluate(t) * cloudFactor);
 
-        dayLight.color = new Color(ColorSunR.Evaluate(t), ColorSunG.Evaluate(t), ColorSunB.Evaluate(t));
+        dayLight.color = new Color(ColorSunR.Evaluate(t) * cloudFactor, ColorSunG.Evaluate(t) * cloudFactor, ColorSunB.Evaluate(t) * cloudFactor);
+
         dayLight.intensity = MaxSunIntensity * ColorSunI.Evaluate(t);
-        nightLight.color = ColorMoon;
+
+        nightLight.color = new Color(ColorMoon.r * cloudFactor, ColorMoon.g * cloudFactor, ColorMoon.b * cloudFactor);
+
         nightLight.intensity = MaxMoonIntensity * ColorMoonI.Evaluate(t);
 
         dayLight.gameObject.transform.eulerAngles = new Vector3(360 * t - 120, 50, 0);

@@ -33,7 +33,7 @@ public class TimesOfDay : MonoBehaviour
     [SerializeField] private Light nightLight;
 
     [Range(0.1f, 1f)]
-    [SerializeField] private float CloudFactor = 1f;
+    [SerializeField] private float cloudFactor;
 
 
     private void Start()

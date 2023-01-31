@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public static class TileManager
 {
+    // Пока ВСЕГДА топология тайлов прямоугольная.
     public static List<List<AbstractTile>> Tiles { get; private set; }
 
     public static AbstractTile GetTileFromId(Vector2Int id)

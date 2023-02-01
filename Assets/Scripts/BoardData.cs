@@ -7,7 +7,7 @@ namespace SaveData
 
         public PlayerInstance CurrentTurn;
 
-        public BuildingStatement[,] Buildings;
+        public BuildingStatement[] Buildings;
         public TileStatement[,] Tiles;
     }
 }

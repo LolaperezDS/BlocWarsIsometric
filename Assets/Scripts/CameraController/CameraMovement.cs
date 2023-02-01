@@ -28,8 +28,8 @@ public class CameraMovement : MonoBehaviour
 
     // Scale
     private float mouseScrollDelta;
-    private float upperLimitOfScale = 10f;
-    private float lowerLimitOfScale = 2f;
+    private float upperLimitOfScale = 3.5f;
+    private float lowerLimitOfScale = 1.5f;
 
     // Optimization Variables
     private float senseDividedByDeltaFactor;

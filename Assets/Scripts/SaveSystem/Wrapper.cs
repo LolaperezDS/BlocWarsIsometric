@@ -30,24 +30,36 @@ public static class Wrapper
         }
 
         // buildings
-        if (BuildingManager.Buildings == null || BuildingManager.Buildings[0] == null)
-        {
-            Debug.LogError("Incorrect Buildings topology");
-            throw new System.ArgumentNullException();
-        }
 
-        boardStatement.Buildings = new BuildingStatement[BuildingManager.Buildings.Count, BuildingManager.Buildings[0].Count];
+        int countOfBuildings = 0;
 
         for (int i = 0; i < BuildingManager.Buildings.Count; i++)
         {
             for (int j = 0; j < BuildingManager.Buildings[0].Count; j++)
             {
-                boardStatement.Buildings[i, j] = BuildingManager.Buildings[i][j].Statement();
+                if (BuildingManager.Buildings[i][j] != null) countOfBuildings++;
+            }
+        }
+
+        boardStatement.Buildings = new BuildingStatement[countOfBuildings];
+        int index = 0;
+
+        for (int i = 0; i < BuildingManager.Buildings.Count; i++)
+        {
+            for (int j = 0; j < BuildingManager.Buildings[0].Count; j++)
+            {
+                if (BuildingManager.Buildings[i][j] != null)
+                {
+                    boardStatement.Buildings[index] = BuildingManager.Buildings[i][j].Statement();
+                    index++;
+                }
             }
         }
 
         // other
         boardStatement.CurrentTurn = TurnController.CurrentPlayersTurn;
+
+        // TODO
         boardStatement.PlayersAndWallets = new (PlayerInstance, ProduceValue)[PlayerInstanceMethods.GetPlayers().Count];
         for (int i = 0; i < PlayerInstanceMethods.GetPlayers().Count; i++)
         {

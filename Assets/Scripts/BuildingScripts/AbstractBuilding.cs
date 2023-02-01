@@ -16,6 +16,9 @@ public abstract class AbstractBuilding : MonoBehaviour
     [SerializeField] protected int health;
     public int Health => health;
 
+    [SerializeField] protected ProduceValue cost;
+    public ProduceValue Cost => cost;
+
     public abstract ProduceValue Produce();
 
     public void DestroyBuilding()

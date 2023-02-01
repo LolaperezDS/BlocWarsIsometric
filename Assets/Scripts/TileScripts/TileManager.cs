@@ -24,4 +24,30 @@ public static class TileManager
     {
         Tiles = initialTiles;
     }
+
+    public static bool CanBeAttached(PlayerInstance player, Vector2Int id)
+    {
+        if (GetTileOwnerFromId(id) == player) return false;
+        for (int i = -1; i < 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (TileExist(id + new Vector2Int(i, j)) && GetTileOwnerFromId(id + new Vector2Int(i, j)) == player) return true;
+            }
+        }
+        return false;
+    }
+
+    public static bool TileExist(Vector2Int id)
+    {
+        try
+        {
+            GetTileFromId(id);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+        return true;
+    }
 }

@@ -20,5 +20,6 @@ public struct ProduceValue
     }
 
     public static ProduceValue zero => new ProduceValue(0, 0);
-    public static ProduceValue normalized => new ProduceValue(1, 1);
+    public static ProduceValue OneAction => new ProduceValue(0, 1);
+    public static ProduceValue OneGold => new ProduceValue(1, 0);
 }

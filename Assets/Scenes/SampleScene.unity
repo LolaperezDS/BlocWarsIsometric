@@ -634,7 +634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &73715440
 Transform:
   m_ObjectHideFlags: 0
@@ -11766,6 +11766,73 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4086208788818962876, guid: 48a1f1480046e4140928f443ad7f5cd9, type: 3}
   m_PrefabInstance: {fileID: 1366952337}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1367644722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367644725}
+  - component: {fileID: 1367644724}
+  - component: {fileID: 1367644723}
+  m_Layer: 0
+  m_Name: Observer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1367644723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367644722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df515b9970dce56458bd1a450625d2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  b_main_prefab: {fileID: 0}
+  b_town_prefab: {fileID: 0}
+  b_mortire_prefab: {fileID: 0}
+  b_cannon_prefab: {fileID: 0}
+  b_mine_prefab: {fileID: 0}
+  b_defender_prefab: {fileID: 0}
+--- !u!114 &1367644724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367644722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92692c7d9345e39498e792b5db400a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileFlatPrefab: {fileID: 0}
+  tileForestPrefab: {fileID: 0}
+  tileRiverPrefab: {fileID: 0}
+  tileMountainPrefab: {fileID: 0}
+--- !u!4 &1367644725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367644722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.9997954, y: -7.679589, z: 18.211107}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1368596432
 PrefabInstance:
   m_ObjectHideFlags: 0

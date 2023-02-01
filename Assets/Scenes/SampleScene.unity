@@ -634,7 +634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &73715440
 Transform:
   m_ObjectHideFlags: 0
@@ -6041,6 +6041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: DayLight
   m_TagString: Untagged
@@ -6066,7 +6067,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -6125,6 +6126,18 @@ Transform:
   m_Father: {fileID: 316403090}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 61.36, y: 50, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2562ce79705e0dd429303d2881aedc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &713982452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13612,6 +13625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534839734}
   - component: {fileID: 1534839735}
+  - component: {fileID: 1534839736}
   m_Layer: 0
   m_Name: LightningBolt
   m_TagString: Untagged
@@ -13696,6 +13710,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1534839736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534839733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2562ce79705e0dd429303d2881aedc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1538611501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15541,6 +15567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1800430046}
   - component: {fileID: 1800430047}
+  - component: {fileID: 1800430048}
   m_Layer: 0
   m_Name: NightLight
   m_TagString: Untagged
@@ -15625,6 +15652,18 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1800430048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800430045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2562ce79705e0dd429303d2881aedc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1801962291
 PrefabInstance:
   m_ObjectHideFlags: 0

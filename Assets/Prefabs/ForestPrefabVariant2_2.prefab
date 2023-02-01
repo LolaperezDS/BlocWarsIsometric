@@ -72,6 +72,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1073879485341167067, guid: f6325607c29764c499f69fdf41554ff2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.724
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073879485341167067, guid: f6325607c29764c499f69fdf41554ff2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.102
+      objectReference: {fileID: 0}
     - target: {fileID: 4194850285600612932, guid: f6325607c29764c499f69fdf41554ff2, type: 3}
       propertyPath: m_Name
       value: ForestPrefabVariant2_2

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+
 public enum PlayerInstance
 {
     Red,
@@ -10,8 +12,20 @@ public enum PlayerInstance
 
 public static class PlayerInstanceMethods
 {
-    public  static List<PlayerInstance> GetPlayers()
+    private static int _playerNumber = -1;
+
+    public static List<PlayerInstance> GetPlayers()
     {
-        return new List<PlayerInstance> ( new [] {PlayerInstance.Red, PlayerInstance.Blue, PlayerInstance.Green, PlayerInstance.Yellow});
+        if (_playerNumber <= 0)
+            throw new Exception("Player Number does not initialized or not initialized properly");
+
+        return (new List<PlayerInstance>(new[]
+                {PlayerInstance.Red, PlayerInstance.Blue, PlayerInstance.Green, PlayerInstance.Yellow}))
+            .GetRange(0, _playerNumber);
+    }
+
+    public static void Setup(int numberOfPlayers)
+    {
+        _playerNumber = numberOfPlayers;
     }
 }

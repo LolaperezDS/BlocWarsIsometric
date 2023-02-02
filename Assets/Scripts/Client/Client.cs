@@ -26,7 +26,7 @@ public class Client : MonoBehaviour
             stream = client.GetStream();
 
             // При соединении, сервер отправляет BoardStatement и Order => (PlayerInstance)
-
+            task = RecieveMessageAsync();
         }
     }
 
@@ -41,7 +41,7 @@ public class Client : MonoBehaviour
             {
                 // Получен пакет
 
-                // ActionYandler.Handle(task.Result);
+                // ActionHandler.Handle(task.Result);
 
                 task = RecieveMessageAsync();
             }

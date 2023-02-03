@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: f82792f0af09c8d40870d819971d73c7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - positiveXEdge: {instanceID: 0}
+  - negativeXEdge: {instanceID: 0}
+  - positiveYEdge: {instanceID: 0}
+  - negativeYEdge: {instanceID: 0}
+  - redColor: {fileID: 2100000, guid: 0d1a86d48144d4f43a3c6a59a029528a, type: 2}
+  - blueColor: {fileID: 2100000, guid: 75dec40202740af41a1d9dc3a520cd16, type: 2}
+  - greenColor: {fileID: 2100000, guid: 0d9231a80e08da24a9d6dc28ac143663, type: 2}
+  - yellowColor: {fileID: 2100000, guid: 4672c6f65fbf4ec46a5ac3c5de85efff, type: 2}
+  - emptyColor: {fileID: 2100000, guid: 0807314e3ae267b4b9b89b18a24fa059, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

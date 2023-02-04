@@ -67,7 +67,9 @@ public static class Wrapper
     }
 
 
-    public static void LoadSnapshot(string fileName)
+    public static void LoadSnapshot(string fileName) => LoadHandler(fileName);
+
+    private static void LoadHandler(string fileName)
     {
         GameObject observer = GameObject.FindGameObjectWithTag("Observer");
 
@@ -108,6 +110,34 @@ public static class Wrapper
 
     public static void DeserializeOnlineBoardStatement(BoardStatement boardStatement)
     {
+        GameObject observer = GameObject.FindGameObjectWithTag("Observer");
+        Vector2Int boardTopology = new Vector2Int(boardStatement.Tiles.GetLength(0), boardStatement.Tiles.GetLength(1));
+
+        // tiles
+        List<List<AbstractTile>> tiles = new List<List<AbstractTile>>(boardTopology.x);
+        for (int i = 0; i < boardTopology.x; i++)
+        {
+            tiles[i] = new List<AbstractTile>(boardTopology.y);
+            for (int j = 0; j < boardTopology.y; j++)
+            {
+                tiles[i][j] = observer.GetComponent<TileFactory>().CreateTile(boardStatement.Tiles[i * boardTopology.x + j]).GetComponent<AbstractTile>();
+            }
+        }
+
+        TileManager.Setup(tiles);
+
+        // buildings
+        List<List<AbstractBuilding>> buildings = new List<List<AbstractBuilding>>(boardTopology.x);
+        for (int i = 0; i < boardTopology.x; i++) buildings[i] = new List<AbstractBuilding>(boardTopology.y);
+
+        foreach (BuildingStatement buildingStatement in boardStatement.Buildings)
+        {
+            Vector2Int id = buildingStatement.id;
+            buildings[id.x][id.y] = observer.GetComponent<BuildingFactory>().CreateBuilding(buildingStatement).GetComponent<AbstractBuilding>();
+        }
+
+        BuildingManager.Setup(buildings);
+
         // TODO
     }
 }

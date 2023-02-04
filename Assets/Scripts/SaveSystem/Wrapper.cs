@@ -19,13 +19,13 @@ public static class Wrapper
             throw new System.ArgumentNullException();
         }
 
-        boardStatement.Tiles = new TileStatement[TileManager.Tiles.Count, TileManager.Tiles[0].Count];
+        boardStatement.Tiles = new TileStatement[TileManager.Tiles.Count * TileManager.Tiles[0].Count];
 
         for (int i = 0; i < TileManager.Tiles.Count; i++)
         {
             for (int j = 0; j < TileManager.Tiles[0].Count; j++)
             {
-                boardStatement.Tiles[i, j] = TileManager.Tiles[i][j].Statement();
+                boardStatement.Tiles[i * TileManager.Tiles.Count +  j] = TileManager.Tiles[i][j].Statement();
             }
         }
 
@@ -60,11 +60,8 @@ public static class Wrapper
         boardStatement.CurrentTurn = TurnController.CurrentPlayersTurn;
 
         // TODO œ≈–≈–¿¡Œ“¿“‹ —»—“≈Ã”  Œÿ≈À‹ Œ¬
-        boardStatement.PlayersAndWallets = new (PlayerInstance, ProduceValue)[PlayerInstanceMethods.GetPlayers().Count];
-        for (int i = 0; i < PlayerInstanceMethods.GetPlayers().Count; i++)
-        {
-            boardStatement.PlayersAndWallets[i] = (PlayerInstanceMethods.GetPlayers()[i], WalletScript.Wallets[i]);
-        }
+        boardStatement.Players = PlayerInstanceMethods.GetPlayers().ToArray();
+        boardStatement.Wallets = WalletScript.Wallets.ToArray();
 
         SaveManager.Save(boardStatement, fileName);
     }
@@ -84,7 +81,7 @@ public static class Wrapper
             tiles[i] = new List<AbstractTile>(boardTopology.y);
             for (int j = 0; j < boardTopology.y; j++)
             {
-                tiles[i][j] = observer.GetComponent<TileFactory>().CreateTile(boardStatement.Tiles[i, j]).GetComponent<AbstractTile>();
+                tiles[i][j] = observer.GetComponent<TileFactory>().CreateTile(boardStatement.Tiles[i * boardTopology.x + j]).GetComponent<AbstractTile>();
             }
         }
 
@@ -106,5 +103,11 @@ public static class Wrapper
         
         // »Õ»÷»¿À»«¿÷»ﬂ ’Œƒ¿ »√–Œ ¿
         // TODO œ≈–≈–¿¡Œ“¿“‹ —»—“≈Ã”  Œÿ≈À‹ Œ¬
+    }
+
+
+    public static void DeserializeOnlineBoardStatement(BoardStatement boardStatement)
+    {
+        // TODO
     }
 }

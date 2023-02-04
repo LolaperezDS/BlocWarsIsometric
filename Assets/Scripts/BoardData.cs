@@ -3,12 +3,13 @@ namespace SaveData
     [System.Serializable]
     public class BoardStatement
     {
-        public (PlayerInstance, ProduceValue)[] PlayersAndWallets;
+        public PlayerInstance[] Players;
+        public ProduceValue[] Wallets;
 
         public PlayerInstance CurrentTurn;
 
         public BuildingStatement[] Buildings;
-        public TileStatement[,] Tiles;
+        public TileStatement[] Tiles;
     }
 }
 

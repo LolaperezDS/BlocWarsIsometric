@@ -45,7 +45,7 @@ public static class TileManager
         {
             GetTileFromId(id);
         }
-        catch (Exception e)
+        catch 
         {
             return false;
         }

@@ -32,6 +32,8 @@ public class EdgeActivator : MonoBehaviour
         negativeXTileAbstract = TileManager.TileExist(abstractTile.Id + Vector2Int.left) ? TileManager.GetTileFromId(abstractTile.Id + Vector2Int.left) : null;
         positiveYTileAbstract = TileManager.TileExist(abstractTile.Id + Vector2Int.up) ? TileManager.GetTileFromId(abstractTile.Id + Vector2Int.up) : null;
         negativeYTileAbstract = TileManager.TileExist(abstractTile.Id + Vector2Int.down) ? TileManager.GetTileFromId(abstractTile.Id + Vector2Int.down) : null;
+
+        UpdateEdges();
     }
 
     // Update is called once per frame

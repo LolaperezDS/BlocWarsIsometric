@@ -24,12 +24,9 @@ public class Client : MonoBehaviour
         // INITIALIZATION
         client = new TcpClient(host, port);
         stream = client.GetStream();
-
-        SendMessageAsync(pd);
         Debug.Log("Запрос на подключение отправлен");
+        SendMessageAsync(pd);
         // При соединении, сервер отправляет BoardStatement и Order => (PlayerInstance)
-        
-        Debug.Log("Ожидаем информацию о столе");
         Debug.Log("Информация о столе принята");
         isConnected = true;
         return RecieveHandler(LARGE_BUFFER_SIZE);
@@ -40,13 +37,12 @@ public class Client : MonoBehaviour
     {
         if (isConnected)
         {
+            if (task == null) task = RecieveMessageAsync();
             isConnected = client.Connected;
-            task = RecieveMessageAsync();
             if (task.Status == TaskStatus.RanToCompletion)
             {
                 // Получен пакет
-
-                // ActionHandler.Handle(task.Result);
+                // Его надо исполнить
 
                 task = RecieveMessageAsync();
             }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SaveData;
 
 public class DotOfEnter : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class DotOfEnter : MonoBehaviour
     {
         if (GlobalSettings.IsOnline)
         {
-            // Connect to server
-            // Get and deserialize board info
-            // Setup Managers
-            // Setup Players to online
+            Client client = new Client();
+            PlayerData pd = new PlayerData(GlobalSettings.NickName);
+            PlayerInitialization boardInit = client.Connect(pd);
+            Wrapper.DeserializeOnlineBoardStatement(JsonUtility.FromJson<BoardStatement>(boardInit.BoardData));
+            Player.Setup((PlayerInstance)boardInit.playerOrder, GlobalSettings.NickName);
+
         }
         else
         {

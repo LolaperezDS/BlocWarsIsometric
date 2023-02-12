@@ -17,17 +17,19 @@ public class Client : MonoBehaviour
     public const int BUFFER_STANDART_SIZE = 1024;
     public const int LARGE_BUFFER_SIZE = 2 * 65536;
 
-    public void Connect()
+    public PlayerInitialization Connect(PlayerData pd)
     {
-        if (!isConnected)
-        {
-            // INITIALIZATION
-            client = new TcpClient(host, port);
-            stream = client.GetStream();
+        // INITIALIZATION
+        client = new TcpClient(host, port);
+        stream = client.GetStream();
 
-            // При соединении, сервер отправляет BoardStatement и Order => (PlayerInstance)
-            task = RecieveMessageAsync();
-        }
+        Task t = SendMessageAsync(JsonUtility.ToJson(pd));
+        t.Wait();
+
+        // При соединении, сервер отправляет BoardStatement и Order => (PlayerInstance)
+        task = RecieveMessageAsync();
+        task.Wait();
+        return JsonUtility.FromJson<PlayerInitialization>(task.Result);
     }
 
 

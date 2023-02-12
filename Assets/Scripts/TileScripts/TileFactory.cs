@@ -5,7 +5,6 @@ public class TileFactory : MonoBehaviour
     [SerializeField] private GameObject tileFlatPrefab;
     [SerializeField] private GameObject tileForestPrefab;
     [SerializeField] private GameObject tileRiverPrefab;
-    [SerializeField] private GameObject tileMountainPrefab;
 
     private GameObject GetPrefab(TileStatement tileStatement)
     {
@@ -17,8 +16,6 @@ public class TileFactory : MonoBehaviour
                 return tileForestPrefab;
             case TileType.River:
                 return tileRiverPrefab;
-            case TileType.Mountain:
-                return tileMountainPrefab;
             default:
                 throw new System.Exception();
         }

@@ -13,6 +13,8 @@ public abstract class AbstractBuilding : MonoBehaviour
     [SerializeField] protected BuildingType buildingType;
     public BuildingType Type => buildingType;
 
+    [SerializeField] protected int maxHealths;
+
     [SerializeField] protected int health;
     public int Health => health;
 
@@ -27,7 +29,12 @@ public abstract class AbstractBuilding : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public abstract void RepairBuilding();
+    public abstract void RepairBuilding(int heal);
+    public void Damage(int damage)
+    {
+        health -= damage;
+        if (health <= 0) DestroyBuilding();
+    }
 
     public void Setup(BuildingStatement buildingStatement)
     {

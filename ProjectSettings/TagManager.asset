@@ -17,8 +17,8 @@ TagManager:
   - VirtualLayer
   - WaterMask
   - 
-  - 
-  - 
+  - TileLayer
+  - BuildingLayer
   - 
   - 
   - 

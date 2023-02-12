@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SaveData;
+using System.Linq;
 
 public static class Wrapper
 {
@@ -138,6 +139,12 @@ public static class Wrapper
 
         BuildingManager.Setup(buildings);
 
-        // TODO
+
+        // Turn
+        TurnController.UnsafeSetTurn(boardStatement.CurrentTurn);
+        // players
+        PlayerInstanceMethods.Setup(boardStatement.Players.Length);
+        // wallets
+        WalletScript.Setup(boardStatement.Wallets.ToList());
     }
 }

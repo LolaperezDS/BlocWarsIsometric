@@ -9,6 +9,13 @@ public class BuildingFactory : MonoBehaviour
     [SerializeField] private GameObject b_mine_prefab;
     [SerializeField] private GameObject b_defender_prefab;
 
+    public GameObject TownPrefab => b_town_prefab;
+    public GameObject MortirePrefab => b_mortire_prefab;
+    public GameObject CannonPrefab => b_cannon_prefab;
+    public GameObject MinePrefab => b_mine_prefab;
+    public GameObject DefenderPrefab => b_defender_prefab;
+
+
     private GameObject GetPrefab(BuildingStatement buildingStatement)
     {
         switch (buildingStatement.buildingType)

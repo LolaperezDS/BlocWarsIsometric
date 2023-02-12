@@ -8,8 +8,9 @@ public class ProduceBuildingScript : AbstractBuilding
         return produce;
     }
 
-    public override void RepairBuilding()
+    public override void RepairBuilding(int heal)
     {
-        this.health += 1;
+        this.health += heal;
+        if (maxHealths >= health) health = maxHealths;
     }
 }

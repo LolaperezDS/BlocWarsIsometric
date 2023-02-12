@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4743127106119079544}
   - component: {fileID: 7628326859897802101}
   - component: {fileID: 2054962925364446938}
-  - component: {fileID: 1998046526988940957}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1998046526988940957
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2889529823106315241}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6802218033042470413
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4938575891034437586}
   - component: {fileID: 6881919762991869968}
-  m_Layer: 0
+  - component: {fileID: 3999667367246752574}
+  m_Layer: 11
   m_Name: RiverPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,6 +133,19 @@ MonoBehaviour:
   player: 4
   id: {x: 0, y: 0}
   tileType: 2
+--- !u!65 &3999667367246752574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6802218033042470413}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.3, z: 1}
+  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!1 &7316950461457063348
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +157,6 @@ GameObject:
   - component: {fileID: 3750411404118336433}
   - component: {fileID: 938996614709754523}
   - component: {fileID: 7229088563228464943}
-  - component: {fileID: 523782683059121794}
   m_Layer: 9
   m_Name: WaterSurface
   m_TagString: Untagged
@@ -231,17 +229,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &523782683059121794
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7316950461457063348}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

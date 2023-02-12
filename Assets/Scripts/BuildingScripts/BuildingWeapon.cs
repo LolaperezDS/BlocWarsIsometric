@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public enum WeaponState
+{
+    Discharged,
+    IsCharging,
+    Charget
+}
+
+public class BuildingWeapon : BuildingWorking
+{
+    [SerializeField] private WeaponState weaponState = WeaponState.Discharged;
+    [SerializeField] private int damage;
+    [SerializeField] private int range;
+
+    public override ProduceValue Produce()
+    {
+        if (weaponState == WeaponState.IsCharging) weaponState = WeaponState.Charget;
+        return ProduceValue.zero;
+    }
+
+    public override void SpecialAction()
+    {
+        if (weaponState == WeaponState.Discharged && WalletScript.PossibilityToSpend(this.PlayerInstance, costOfSpecialAction))
+        {
+            weaponState = WeaponState.IsCharging;
+            WalletScript.Spend(this.PlayerInstance, costOfSpecialAction);
+        }
+    }
+
+    public void Fire(AbstractBuilding toBuilding)
+    {
+        if (weaponState == WeaponState.Charget && Mathf.Abs(toBuilding.Id.x - id.x) > range || Mathf.Abs(toBuilding.Id.y - id.y) > range)
+        {
+            toBuilding.Damage(damage);
+            weaponState = WeaponState.Discharged;
+        }
+    }
+}

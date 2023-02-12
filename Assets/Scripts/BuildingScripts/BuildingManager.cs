@@ -10,7 +10,7 @@ public static class BuildingManager
 
     public static AbstractBuilding GetBuildingFromId(Vector2Int id)
     {
-        if (Buildings.Count <= id.x || Buildings[0].Count <= id.y) return null;
+        if (Buildings.Count <= id.x || Buildings[0].Count <= id.y || id.y < 0 || id.x < 0) return null;
         return Buildings[id.x][id.y];
     }
 

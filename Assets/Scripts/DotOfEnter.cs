@@ -5,15 +5,17 @@ using SaveData;
 
 public class DotOfEnter : MonoBehaviour
 {
+    private Client client;
     void Start()
     {
         if (GlobalSettings.IsOnline)
         {
-            Client client = new Client();
-            PlayerData pd = new PlayerData(GlobalSettings.NickName);
-            PlayerInitialization boardInit = client.Connect(pd);
-            Wrapper.DeserializeOnlineBoardStatement(JsonUtility.FromJson<BoardStatement>(boardInit.BoardData));
-            Player.Setup((PlayerInstance)boardInit.playerOrder, GlobalSettings.NickName);
+
+            client = GetComponent<Client>();
+            string boardInit = client.Connect(GlobalSettings.NickName);
+            Debug.Log(boardInit);
+            Wrapper.DeserializeOnlineBoardStatement(JsonUtility.FromJson<BoardStatement>(boardInit.Split(';')[1]));
+            Player.Setup((PlayerInstance)System.Convert.ToInt32(boardInit.Split(';')[0]), GlobalSettings.NickName);
 
         }
         else

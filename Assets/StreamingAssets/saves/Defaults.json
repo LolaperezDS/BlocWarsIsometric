@@ -14,7 +14,44 @@
         }
     ],
     "CurrentTurn": 0,
-    "Buildings": [],
+    "Buildings": [
+        {
+            "id": {
+                "x": 0,
+                "y": 0
+            },
+            "buildingType": 0,
+            "player": 0,
+            "health": 10
+        },
+        {
+            "id": {
+                "x": 1,
+                "y": 0
+            },
+            "buildingType": 3,
+            "player": 0,
+            "health": 4
+        },
+        {
+            "id": {
+                "x": 14,
+                "y": 15
+            },
+            "buildingType": 3,
+            "player": 1,
+            "health": 4
+        },
+        {
+            "id": {
+                "x": 15,
+                "y": 15
+            },
+            "buildingType": 0,
+            "player": 1,
+            "health": 10
+        }
+    ],
     "Tiles": [
         {
             "id": {
@@ -22,7 +59,7 @@
                 "y": 0
             },
             "tileType": 0,
-            "player": 4
+            "player": 0
         },
         {
             "id": {
@@ -30,7 +67,7 @@
                 "y": 1
             },
             "tileType": 0,
-            "player": 4
+            "player": 0
         },
         {
             "id": {
@@ -150,7 +187,7 @@
                 "y": 0
             },
             "tileType": 0,
-            "player": 4
+            "player": 0
         },
         {
             "id": {
@@ -158,7 +195,7 @@
                 "y": 1
             },
             "tileType": 0,
-            "player": 4
+            "player": 0
         },
         {
             "id": {
@@ -1926,7 +1963,7 @@
                 "y": 14
             },
             "tileType": 0,
-            "player": 4
+            "player": 1
         },
         {
             "id": {
@@ -1934,7 +1971,7 @@
                 "y": 15
             },
             "tileType": 0,
-            "player": 4
+            "player": 1
         },
         {
             "id": {
@@ -2054,7 +2091,7 @@
                 "y": 14
             },
             "tileType": 0,
-            "player": 4
+            "player": 1
         },
         {
             "id": {
@@ -2062,7 +2099,7 @@
                 "y": 15
             },
             "tileType": 0,
-            "player": 4
+            "player": 1
         }
     ]
 }

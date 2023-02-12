@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System;
@@ -15,21 +17,22 @@ public class Client : MonoBehaviour
     private Task<string> task;
 
     public const int BUFFER_STANDART_SIZE = 1024;
-    public const int LARGE_BUFFER_SIZE = 2 * 65536;
+    public const int LARGE_BUFFER_SIZE = 65536;
 
-    public PlayerInitialization Connect(PlayerData pd)
+    public string Connect(string pd)
     {
         // INITIALIZATION
         client = new TcpClient(host, port);
         stream = client.GetStream();
 
-        Task t = SendMessageAsync(JsonUtility.ToJson(pd));
-        t.Wait();
-
+        SendMessageAsync(pd);
+        Debug.Log("Запрос на подключение отправлен");
         // При соединении, сервер отправляет BoardStatement и Order => (PlayerInstance)
-        task = RecieveMessageAsync();
-        task.Wait();
-        return JsonUtility.FromJson<PlayerInitialization>(task.Result);
+        
+        Debug.Log("Ожидаем информацию о столе");
+        Debug.Log("Информация о столе принята");
+        isConnected = true;
+        return RecieveHandler(LARGE_BUFFER_SIZE);
     }
 
 
@@ -57,9 +60,10 @@ public class Client : MonoBehaviour
         SendMessageAsync(pack);
     }
 
-    private async Task SendMessageAsync(string message, int buffSize = BUFFER_STANDART_SIZE)
+    private async void SendMessageAsync(string message, int buffSize = BUFFER_STANDART_SIZE)
     {
-        await Task.Run(() => SendHandler(message, buffSize));
+        Task taskn = Task.Run(() => SendHandler(message, buffSize));
+        await taskn;
     }
 
     private void SendHandler(string message, int buffSize)

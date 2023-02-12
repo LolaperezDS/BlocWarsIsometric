@@ -24,7 +24,7 @@ public class TileFactory : MonoBehaviour
     public GameObject CreateTile(TileStatement tileStatement)
     {
         GameObject tile = Instantiate(GetPrefab(tileStatement));
-        tile.transform.position = new Vector2(tileStatement.id.x, tileStatement.id.y);
+        tile.transform.position = new Vector3(tileStatement.id.x, 0, tileStatement.id.y);
         tile.GetComponent<AbstractTile>().SetUp(tileStatement);
         return tile;
     }

@@ -40,7 +40,7 @@ public class BuildingFactory : MonoBehaviour
     public GameObject CreateBuilding(BuildingStatement buildingStatement)
     {
         GameObject building = Instantiate(GetPrefab(buildingStatement),
-            new Vector3(buildingStatement.id.x, buildingStatement.id.y, 0),
+            new Vector3(buildingStatement.id.x, 0, buildingStatement.id.y),
             Quaternion.identity);
         building.GetComponent<AbstractBuilding>().Setup(buildingStatement);
         return building;

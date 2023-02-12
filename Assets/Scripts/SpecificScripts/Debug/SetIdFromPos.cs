@@ -12,6 +12,7 @@ public class SetIdFromPos : MonoBehaviour
         wallets.Add(new ProduceValue(100, 100));
         wallets.Add(new ProduceValue(100, 100));
         WalletScript.Setup(wallets);
+        PlayerInstanceMethods.Setup(2);
 
         // buildings
         List<List<AbstractBuilding>> buildings = new List<List<AbstractBuilding>>(16);
@@ -24,6 +25,13 @@ public class SetIdFromPos : MonoBehaviour
             }
         }
         BuildingManager.Setup(buildings);
+
+        AbstractBuilding[] buildingsN = GameObject.FindObjectsOfType<AbstractBuilding>();
+        foreach (AbstractBuilding building in buildingsN)
+        {
+            building.Setup(new BuildingStatement(new Vector2Int((int)building.transform.position.x, (int)building.transform.position.z), building.Type, building.PlayerInstance, building.Health));
+            BuildingManager.Buildings[building.Id.x][building.Id.y] = building;
+        }
 
         // tiles 
         List<List<AbstractTile>> tilesN = new List<List<AbstractTile>>(16);

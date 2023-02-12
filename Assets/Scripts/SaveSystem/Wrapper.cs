@@ -112,32 +112,43 @@ public static class Wrapper
     public static void DeserializeOnlineBoardStatement(BoardStatement boardStatement)
     {
         GameObject observer = GameObject.FindGameObjectWithTag("Observer");
-        Vector2Int boardTopology = new Vector2Int(boardStatement.Tiles.GetLength(0), boardStatement.Tiles.GetLength(1));
 
         // tiles
-        List<List<AbstractTile>> tiles = new List<List<AbstractTile>>(boardTopology.x);
-        for (int i = 0; i < boardTopology.x; i++)
+        // WARNING ÍÀÃËÓÕÎ ÂÕÀÐÄÊÎÄÅÍÛÅ ÄÀÍÍÛÅ
+        List<List<AbstractTile>> tilesN = new List<List<AbstractTile>>(16);
+        for (int i = 0; i < 16; i++)
         {
-            tiles[i] = new List<AbstractTile>(boardTopology.y);
-            for (int j = 0; j < boardTopology.y; j++)
+            tilesN.Add(new List<AbstractTile>(16));
+            for (int j = 0; j < 16; j++)
             {
-                tiles[i][j] = observer.GetComponent<TileFactory>().CreateTile(boardStatement.Tiles[i * boardTopology.x + j]).GetComponent<AbstractTile>();
+                tilesN[i].Add(null);
             }
         }
+        TileManager.Setup(tilesN);
 
-        TileManager.Setup(tiles);
+        foreach (TileStatement tileState in boardStatement.Tiles)
+        {
+            Vector2Int id = tileState.id;
+            TileManager.Tiles[id.x][id.y] = observer.GetComponent<TileFactory>().CreateTile(tileState).GetComponentInChildren<AbstractTile>();
+        }
 
         // buildings
-        List<List<AbstractBuilding>> buildings = new List<List<AbstractBuilding>>(boardTopology.x);
-        for (int i = 0; i < boardTopology.x; i++) buildings[i] = new List<AbstractBuilding>(boardTopology.y);
+        List<List<AbstractBuilding>> buildings = new List<List<AbstractBuilding>>(16);
+        for (int i = 0; i < 16; i++)
+        {
+            buildings.Add(new List<AbstractBuilding>(16));
+            for (int j = 0; j < 16; j++)
+            {
+                buildings[i].Add(null);
+            }
+        }
+        BuildingManager.Setup(buildings);
 
         foreach (BuildingStatement buildingStatement in boardStatement.Buildings)
         {
             Vector2Int id = buildingStatement.id;
-            buildings[id.x][id.y] = observer.GetComponent<BuildingFactory>().CreateBuilding(buildingStatement).GetComponent<AbstractBuilding>();
+            BuildingManager.Buildings[id.x][id.y] = observer.GetComponent<BuildingFactory>().CreateBuilding(buildingStatement).GetComponent<AbstractBuilding>();
         }
-
-        BuildingManager.Setup(buildings);
 
 
         // Turn

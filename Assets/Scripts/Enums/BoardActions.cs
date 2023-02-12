@@ -1,18 +1,50 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+
+
+public enum BoardActionEnum
+{
+    BuildBuilding,
+    OwnTile,
+    Shoot,
+    DestroyBuilding,
+    ChangeTurn,
+    SendMessage,
+    RepairBuilding
+}
+
+public static class BoardActionsEnumMethods
+{
+    public static int ToInt(BoardAction action) => action switch
+    {
+        BuildBuilding => (int) BoardActionEnum.BuildBuilding,
+        OwnTile => (int) BoardActionEnum.OwnTile,
+        Shoot => (int) BoardActionEnum.Shoot,
+        DestroyBuilding => (int) BoardActionEnum.DestroyBuilding,
+        ChangeTurn => (int) BoardActionEnum.ChangeTurn,
+        SendMessage => (int) BoardActionEnum.SendMessage,
+        RepairBuilding => (int) BoardActionEnum.RepairBuilding,
+        _ => throw new Exception("Not Implemented action")
+    };
+
+    public static BoardActionEnum ToEnum(int actionId)
+    {
+        switch (actionId)
+        {
+            case (int) BoardActionEnum.BuildBuilding: return BoardActionEnum.BuildBuilding;
+            case (int) BoardActionEnum.OwnTile: return BoardActionEnum.OwnTile;
+            case (int) BoardActionEnum.Shoot: return BoardActionEnum.Shoot;
+            case (int) BoardActionEnum.DestroyBuilding: return BoardActionEnum.DestroyBuilding;
+            case (int) BoardActionEnum.ChangeTurn: return BoardActionEnum.ChangeTurn;
+            case (int) BoardActionEnum.SendMessage: return BoardActionEnum.SendMessage;
+            case (int) BoardActionEnum.RepairBuilding: return BoardActionEnum.RepairBuilding;
+            default: throw new Exception("Not Implemented action");
+        }
+    }
+}
 
 public abstract class BoardAction
 {
-}
-
-public class ChosenBuilding : BoardAction
-{
-    private readonly Vector2Int _buildingCoords;
-    public Vector2Int BuildingCoord { get; }
-
-    public ChosenBuilding(Vector2Int coords)
-    {
-        _buildingCoords = coords;
-    }
 }
 
 public class BuildBuilding : BoardAction
@@ -64,8 +96,7 @@ public class DestroyBuilding : BoardAction
 {
     private readonly Vector2Int _buildingCoords;
 
-    public Vector2Int BuildingCoord { get; } // Нужно ли хранить какой игрок это запросил?
-    // или просто будет сравниваться с текущим игроком
+    public Vector2Int BuildingCoord { get; }
 
     public DestroyBuilding(Vector2Int coords)
     {
@@ -96,9 +127,13 @@ public class RepairBuilding : BoardAction
     private readonly int _repairAmount;
     public int RepairAmount { get; }
 
-    public RepairBuilding(Vector2Int buildingCoord, int repairAmount)
+    private readonly ProduceValue _neededResources;
+    public ProduceValue NeededResources { get; }
+
+    public RepairBuilding(Vector2Int buildingCoord, int repairAmount, ProduceValue neededResources)
     {
         _buildingCoord = buildingCoord;
         _repairAmount = repairAmount;
+        _neededResources = neededResources;
     }
 }

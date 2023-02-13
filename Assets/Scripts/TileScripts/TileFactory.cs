@@ -1,21 +1,22 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TileFactory : MonoBehaviour
 {
-    [SerializeField] private GameObject tileFlatPrefab;
-    [SerializeField] private GameObject tileForestPrefab;
-    [SerializeField] private GameObject tileRiverPrefab;
+    [SerializeField] private List<GameObject> tileFlatPrefabs;
+    [SerializeField] private List<GameObject> tileForestPrefabs;
+    [SerializeField] private List<GameObject> tileRiverPrefabs;
 
     private GameObject GetPrefab(TileStatement tileStatement)
     {
         switch (tileStatement.tileType)
         {
             case TileType.Flat:
-                return tileFlatPrefab;
+                return tileFlatPrefabs[Random.Range(0, tileFlatPrefabs.Count)];
             case TileType.Forest:
-                return tileForestPrefab;
+                return tileForestPrefabs[Random.Range(0, tileForestPrefabs.Count)];
             case TileType.River:
-                return tileRiverPrefab;
+                return tileRiverPrefabs[Random.Range(0, tileRiverPrefabs.Count)];
             default:
                 throw new System.Exception();
         }

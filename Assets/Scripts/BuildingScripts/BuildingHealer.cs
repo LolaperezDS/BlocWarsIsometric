@@ -4,7 +4,7 @@ public enum HealerState
 {
     Discharged,
     IsCharging,
-    Charget
+    ChargedUp
 }
 
 public class BuildingHealer : BuildingWorking
@@ -13,7 +13,7 @@ public class BuildingHealer : BuildingWorking
 
     public override ProduceValue Produce()
     {
-        if (healerState == HealerState.IsCharging) healerState = HealerState.Charget;
+        if (healerState == HealerState.IsCharging) healerState = HealerState.ChargedUp;
         return ProduceValue.zero;
     }
 
@@ -24,7 +24,7 @@ public class BuildingHealer : BuildingWorking
             WalletScript.Spend(this.PlayerInstance, costOfSpecialAction);
             healerState = HealerState.IsCharging;
         }
-        else if (healerState == HealerState.Charget)
+        else if (healerState == HealerState.ChargedUp)
         {
             for (int i = -1; i <= 1; i++)
             {

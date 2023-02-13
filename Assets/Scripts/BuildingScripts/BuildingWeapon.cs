@@ -4,7 +4,7 @@ public enum WeaponState
 {
     Discharged,
     IsCharging,
-    Charget
+    ChargedUp
 }
 
 public class BuildingWeapon : BuildingWorking
@@ -15,7 +15,7 @@ public class BuildingWeapon : BuildingWorking
 
     public override ProduceValue Produce()
     {
-        if (weaponState == WeaponState.IsCharging) weaponState = WeaponState.Charget;
+        if (weaponState == WeaponState.IsCharging) weaponState = WeaponState.ChargedUp;
         return ProduceValue.zero;
     }
 
@@ -30,7 +30,7 @@ public class BuildingWeapon : BuildingWorking
 
     public void Fire(AbstractBuilding toBuilding)
     {
-        if (weaponState == WeaponState.Charget && Mathf.Abs(toBuilding.Id.x - id.x) > range || Mathf.Abs(toBuilding.Id.y - id.y) > range)
+        if (weaponState == WeaponState.ChargedUp && Mathf.Abs(toBuilding.Id.x - id.x) > range || Mathf.Abs(toBuilding.Id.y - id.y) > range)
         {
             toBuilding.Damage(damage);
             weaponState = WeaponState.Discharged;

@@ -12,8 +12,6 @@ public enum DayTimes
 
 public class TimesOfDay : MonoBehaviour
 {
-    [SerializeField] private DayTimes startTime;
-    private DayTimes lastTime;
 
     [SerializeField] private float MaxSunIntensity;
     [SerializeField] private AnimationCurve ColorSunR;
@@ -35,23 +33,20 @@ public class TimesOfDay : MonoBehaviour
     [Range(0.1f, 1f)]
     [SerializeField] private float cloudFactor;
 
+    private float continiousTime;
+    private float targetTime;
+    private float speedOfAnimation;
 
-    private void Start()
+    public void SetTime(float t)
     {
-        lastTime = startTime;
-        SetTime(startTime);
+        if (t >= 0 && t <= 1) SetCurrentTime(t);
+        else throw new System.ArgumentOutOfRangeException("Incorrect time");
     }
-
-    private void Update()
-    {
-        if (lastTime != startTime) SetTime(startTime);
-        lastTime = startTime;
-    }
-    public void SetTime(float t) => SetCurrentTime(t);
     public void SetTime(DayTimes dt) => SetCurrentTime(RangeFromDayTimes(dt));
 
     private void SetCurrentTime(float t)
     {
+
         RenderSettings.ambientLight = new Color(ColorAmbientR.Evaluate(t) * cloudFactor, ColorAmbientG.Evaluate(t) * cloudFactor, ColorAmbientB.Evaluate(t) * cloudFactor);
 
         dayLight.color = new Color(ColorSunR.Evaluate(t) * cloudFactor, ColorSunG.Evaluate(t) * cloudFactor, ColorSunB.Evaluate(t) * cloudFactor);
@@ -66,7 +61,7 @@ public class TimesOfDay : MonoBehaviour
         nightLight.gameObject.transform.eulerAngles = new Vector3(360 * t - 300, 50, 0);
     }
 
-    private float RangeFromDayTimes(DayTimes dayTime)
+    public float RangeFromDayTimes(DayTimes dayTime)
     {
         switch (dayTime){
             case DayTimes.Morning:
@@ -81,4 +76,16 @@ public class TimesOfDay : MonoBehaviour
                 throw new System.Exception();
         }
     }
+
+    public void SetTargetTime(float t)
+    {
+        if (t >= 0 && t <= 1) targetTime = t;
+        else throw new System.ArgumentOutOfRangeException("Incorrect time");
+    }
+    public void SetTargetTime(DayTimes dt)
+    {
+        targetTime = RangeFromDayTimes(dt);
+    }
+
+
 }

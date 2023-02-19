@@ -1,2 +1,4 @@
 # BlocWarsIsometric
-![image](https://user-images.githubusercontent.com/61661965/215294040-99eccbd3-b890-4d1e-a5e6-73057df02328.png)
+
+![image](https://user-images.githubusercontent.com/61661965/219717932-f14a2a8d-5e82-419f-9192-31220abd0b96.png)
+![image](https://user-images.githubusercontent.com/61661965/219718007-474e07c8-113a-408d-ac41-eb2a7172d961.png)

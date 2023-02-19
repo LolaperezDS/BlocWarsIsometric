@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.17721686, g: 0.22185439, b: 0.30410478, a: 1}
+  m_IndirectSpecularColor: {r: 0.17721076, g: 0.22184786, b: 0.3040975, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1325,7 +1325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe17f3b8199c3434f84785ce3023abb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 495950520}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,12 +1693,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df515b9970dce56458bd1a450625d2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_main_prefab: {fileID: 2720463619991275846, guid: 0b49e67f64c397142a23d32290509bf9, type: 3}
-  b_town_prefab: {fileID: 6028309864753886510, guid: a4133d0c4bc69ad4ab4e3dd08653738a, type: 3}
-  b_mortire_prefab: {fileID: 5979808940776533172, guid: 3cd223b608015de41b0386186b39302e, type: 3}
-  b_cannon_prefab: {fileID: 3537853178623863981, guid: c1aac33c930c50a4d8f25188449dc5e1, type: 3}
-  b_mine_prefab: {fileID: 4344386351148021175, guid: f1b102fe5f525c143a76a1647cec39f6, type: 3}
-  b_defender_prefab: {fileID: 8999378102316034252, guid: 65a9f8947f11e8843b9786941fdcd9bf, type: 3}
+  b_main_prefab: {fileID: 2720463619991275846, guid: b728c30596037cb4bbd37d2a20a87519, type: 3}
+  b_town_prefab: {fileID: 6028309864753886510, guid: a7de515576ccb514da04f2fc2c5834c4, type: 3}
+  b_mortire_prefab: {fileID: 5979808940776533172, guid: d6d5c5a74d517684aa04fdd87790c1de, type: 3}
+  b_cannon_prefab: {fileID: 3537853178623863981, guid: f251ea5b6b8d82e47b736291e0cb6f42, type: 3}
+  b_mine_prefab: {fileID: 4344386351148021175, guid: 3a80635866628d84281b7e69e9d81ec0, type: 3}
+  b_defender_prefab: {fileID: 8999378102316034252, guid: 2f3e40767a66b8c49ae1db3c026f9726, type: 3}
 --- !u!114 &1367644724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1749,8 +1748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e3fcfd1c387a542a57ccd88209c3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFireCursor: 0
-  SelectedWeaponObj: {fileID: 0}
 --- !u!1 &1397406066
 GameObject:
   m_ObjectHideFlags: 0

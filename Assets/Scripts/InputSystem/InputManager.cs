@@ -138,10 +138,9 @@ public class InputManager : MonoBehaviour
                 {
                     AbstractBuilding building = hit.transform.gameObject.GetComponent<AbstractBuilding>();
 
-                    if (building is BuildingWorking)
+                    if (building is BuildingWorking b_working)
                     {
-                        BuildingWorking b = (BuildingWorking)building;
-                        b.SpecialAction();
+                        b_working.SpecialAction();
 
                         // WRAP AND SEND ACTION TO SERVER
                     }
@@ -155,16 +154,10 @@ public class InputManager : MonoBehaviour
                 {
                     AbstractBuilding building = hit.transform.gameObject.GetComponent<AbstractBuilding>();
 
-                    if (building is BuildingWorking)
+                    if (building is BuildingWeapon b_weapon)
                     {
-                        BuildingWorking b = (BuildingWorking)building;
-                        if (b is BuildingWeapon)
-                        {
-                            BuildingWeapon bw = (BuildingWeapon)b;
-                            SelectedWeaponObj = bw;
-                            isFireCursor = true;
-                        }
-
+                        SelectedWeaponObj = b_weapon;
+                        isFireCursor = true;
                         // WRAP AND SEND ACTION TO SERVER
                     }
                 }

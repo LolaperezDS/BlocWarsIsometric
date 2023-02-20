@@ -6421,7 +6421,7 @@ GameObject:
   - component: {fileID: 1135761795}
   m_Layer: 0
   m_Name: DotOfEnter
-  m_TagString: Untagged
+  m_TagString: DotOfEnter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

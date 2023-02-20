@@ -29,6 +29,7 @@ public static class ActionWrapper
             }
             case OwnTile newAction:
             {
+                Debug.Log("TileCoord: (" + newAction.TileCoord.x + ", " + newAction.TileCoord.y + ")");
                 wrappedInfo["TileCoord"] =
                     String.Format("({0},{1})", newAction.TileCoord.x, newAction.TileCoord.y);
                 break;

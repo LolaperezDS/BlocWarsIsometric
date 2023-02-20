@@ -4822,6 +4822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8999378102316034241}
   - component: {fileID: 8999378102316034254}
+  - component: {fileID: -2859342785449066453}
   m_Layer: 12
   m_Name: DefenderPrefab
   m_TagString: Untagged
@@ -4859,6 +4860,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.76, y: 0.73, z: 0.76}
   m_Center: {x: 0, y: 0.63, z: 0}
+--- !u!114 &-2859342785449066453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999378102316034252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba02e868126aad4cb54cc165868f9d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: 4
+  id: {x: 0, y: 0}
+  buildingType: 4
+  maxHealths: 1
+  health: 1
+  cost:
+    gold: 45
+    actions: 3
+  costOfSpecialAction:
+    gold: 5
+    actions: 1
+  healerState: 0
 --- !u!1 &9046406445386953914
 GameObject:
   m_ObjectHideFlags: 0

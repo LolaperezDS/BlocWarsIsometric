@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DayTimes
-{
-    Morning,
-    Noon,
-    Evening,
-    MidNight
-}
 
 public class TimesOfDay : MonoBehaviour
 {

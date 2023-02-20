@@ -16,9 +16,14 @@ public class BuildingFactory : MonoBehaviour
     public GameObject DefenderPrefab => b_defender_prefab;
 
 
-    private GameObject GetPrefab(BuildingStatement buildingStatement)
+    public GameObject GetPrefab(BuildingStatement buildingStatement)
     {
-        switch (buildingStatement.buildingType)
+        return GetPrefab(buildingStatement.buildingType);
+    }
+
+    public GameObject GetPrefab(BuildingType buildingType)
+    {
+        switch (buildingType)
         {
             case BuildingType.MainTown:
                 return b_main_prefab;
@@ -35,7 +40,7 @@ public class BuildingFactory : MonoBehaviour
             default:
                 throw new System.Exception();
         }
-    }
+    } 
 
     public GameObject CreateBuilding(BuildingStatement buildingStatement)
     {

@@ -10,7 +10,8 @@ public enum BoardActionEnum
     DestroyBuilding,
     ChangeTurn,
     SendMessage,
-    RepairBuilding
+    RepairBuilding,
+    SpecialAction
 }
 
 public static class BoardActionsEnumMethods
@@ -24,6 +25,7 @@ public static class BoardActionsEnumMethods
         ChangeTurn => (int) BoardActionEnum.ChangeTurn,
         SendMessage => (int) BoardActionEnum.SendMessage,
         RepairBuilding => (int) BoardActionEnum.RepairBuilding,
+        SpecialAction => (int) BoardActionEnum.SpecialAction,
         _ => throw new Exception("Not Implemented action")
     };
 
@@ -38,6 +40,7 @@ public static class BoardActionsEnumMethods
             case (int) BoardActionEnum.ChangeTurn: return BoardActionEnum.ChangeTurn;
             case (int) BoardActionEnum.SendMessage: return BoardActionEnum.SendMessage;
             case (int) BoardActionEnum.RepairBuilding: return BoardActionEnum.RepairBuilding;
+            case (int) BoardActionEnum.SpecialAction: return BoardActionEnum.SpecialAction;
             default: throw new Exception("Not Implemented action");
         }
     }
@@ -81,14 +84,10 @@ public class Shoot : BoardAction
     private readonly Vector2Int _destination;
     public Vector2Int Destination { get; }
 
-    private readonly int _amountOfDamage;
-    public int AmountOfDamage { get; }
-
-    public Shoot(Vector2Int sourceCoords, Vector2Int destinationCoords, int amountOfDamage)
+    public Shoot(Vector2Int sourceCoords, Vector2Int destinationCoords)
     {
         _source = sourceCoords;
         _destination = destinationCoords;
-        _amountOfDamage = amountOfDamage;
     }
 }
 
@@ -127,13 +126,20 @@ public class RepairBuilding : BoardAction
     private readonly int _repairAmount;
     public int RepairAmount { get; }
 
-    private readonly ProduceValue _neededResources;
-    public ProduceValue NeededResources { get; }
-
-    public RepairBuilding(Vector2Int buildingCoord, int repairAmount, ProduceValue neededResources)
+    public RepairBuilding(Vector2Int buildingCoord, int repairAmount)
     {
         _buildingCoord = buildingCoord;
         _repairAmount = repairAmount;
-        _neededResources = neededResources;
+    }
+}
+
+public class SpecialAction : BoardAction
+{
+    private readonly Vector2Int _coord;
+    public Vector2Int ActionCoord { get; }
+    
+    public SpecialAction(Vector2Int actionCoord)
+    {
+        _coord = actionCoord;
     }
 }

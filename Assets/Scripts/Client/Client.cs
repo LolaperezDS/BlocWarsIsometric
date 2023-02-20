@@ -41,9 +41,7 @@ public class Client : MonoBehaviour
             isConnected = client.Connected;
             if (task.Status == TaskStatus.RanToCompletion)
             {
-                // Получен пакет
-                // Его надо исполнить
-
+                ActionHandler.ApplyAction(ActionWrapper.Unwrap(task.Result));
                 task = RecieveMessageAsync();
             }
         }

@@ -17,7 +17,7 @@ public class Client : MonoBehaviour
     private Task<string> task;
 
     public const int BUFFER_STANDART_SIZE = 1024;
-    public const int LARGE_BUFFER_SIZE = 65536;
+    public const int LARGE_BUFFER_SIZE = 65536 * 5;
 
     public string Connect(string pd)
     {
@@ -65,9 +65,9 @@ public class Client : MonoBehaviour
     private void SendHandler(string message, int buffSize)
     {
         byte[] msg = new byte[buffSize];
-        msg = Encoding.Default.GetBytes(message);  // конвертируем строку в массив байт
+        msg = Encoding.Default.GetBytes(message); // конвертируем строку в массив байт
 
-        stream.Write(msg, 0, msg.Length);     // отправл€ем сообщение
+        stream.Write(msg, 0, msg.Length); // отправл€ем сообщение
     }
 
 
@@ -76,11 +76,23 @@ public class Client : MonoBehaviour
         return await Task<String>.Run(() => RecieveHandler(buffSize));
     }
 
-
     private string RecieveHandler(int buffSize)
     {
-        byte[] msg = new byte[buffSize];     // готовим место дл€ прин€ти€ сообщени€
-        int count = stream.Read(msg, 0, msg.Length);   // читаем сообщение от клиента
-        return Encoding.Default.GetString(msg, 0, count); // выводим на экран полученное сообщение в виде строк
+        StringBuilder stringBuilder = new StringBuilder();
+        byte[] bytes = new byte[buffSize];
+        int length; 					
+        // Read incomming stream into byte arrary. 					
+        while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+        {
+            if (length == 0) break;
+            int count = stringBuilder.Length;
+            var incommingData = new byte[length]; 						
+            Array.Copy(bytes, 0, incommingData, 0, length); 						
+            // Convert byte array to string message. 						
+            stringBuilder.Append(Encoding.ASCII.GetString(incommingData));
+            if (count == stringBuilder.Length) break;
+        }
+
+        return stringBuilder.ToString();
     }
 }

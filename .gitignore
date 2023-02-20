@@ -61,5 +61,5 @@ crashlytics-build.properties
 *.xml
 Assets/Scripts/Enums/BoardActions.cs.meta
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
-*.meta
+.meta
 UserSettings/Layouts/default-2021.dwlt

@@ -24,9 +24,7 @@ public class Client : MonoBehaviour
         // INITIALIZATION
         client = new TcpClient(host, port);
         client.ReceiveBufferSize = LARGE_BUFFER_SIZE;
-        client.SendBufferSize = LARGE_BUFFER_SIZE;
         stream = client.GetStream();
-        stream.SetLength(LARGE_BUFFER_SIZE);
         Debug.Log("Запрос на подключение отправлен");
         SendMessageAsync(pd);
         // При соединении, сервер отправляет BoardStatement и Order => (PlayerInstance)
@@ -38,6 +36,7 @@ public class Client : MonoBehaviour
 
     private void Update()
     {
+        client.ReceiveBufferSize = BUFFER_STANDART_SIZE * 8;
         if (isConnected)
         {
             if (task == null) task = RecieveMessageAsync();

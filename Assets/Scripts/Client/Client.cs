@@ -78,12 +78,16 @@ public class Client : MonoBehaviour
 
     private string RecieveHandler(int buffSize)
     {
+        int numberOfBytes = GetNumberOfBytes();
+        
         StringBuilder stringBuilder = new StringBuilder();
         byte[] bytes = new byte[buffSize];
-        int length; 					
+        int length;
+        
         // Read incomming stream into byte arrary. 					
-        while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+        while (stringBuilder.ToString().Length != numberOfBytes)
         {
+            length = stream.Read(bytes, 0, bytes.Length);
             if (length == 0) break;
             int count = stringBuilder.Length;
             var incommingData = new byte[length]; 						
@@ -94,5 +98,13 @@ public class Client : MonoBehaviour
         }
 
         return stringBuilder.ToString();
+    }
+
+    private int GetNumberOfBytes()
+    {
+        byte[] bytes = new byte[1024];
+        stream.Read(bytes, 0, bytes.Length);
+        
+        return Convert.ToInt32(Encoding.ASCII.GetString(bytes));
     }
 }

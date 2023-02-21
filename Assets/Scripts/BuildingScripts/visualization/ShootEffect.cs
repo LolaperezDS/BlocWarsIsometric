@@ -16,7 +16,8 @@ public class ShootEffect : MonoBehaviour
     {
         if (effectPrefab != null && destination != null)
         {
-            Instantiate(effectPrefab, destination, Quaternion.FromToRotation(this.transform.position, destination));
+            Vector3 direction = destination - this.transform.position;
+            Instantiate(effectPrefab, destination, Quaternion.LookRotation(direction));
         }
     }
 }

@@ -7,12 +7,16 @@ public class WeatherEffectController : MonoBehaviour
     private PlayerInstance lastTurn;
     private PlayerInstance currentTurn;
 
-    private bool isinEffect;
+    private bool isInEffect = false;
 
-    private float multiplayerOfExit = 3;
+    private float chanceOfExit = 3;
     private float chanceOfRain = 0.08f;
     private float chanceOfAsh = 0.05f;
     private float chanceOfGodRays = 0.05f;
+
+    [SerializeField] private WeatherEffectAbs RekindledAhsesObj;
+    [SerializeField] private WeatherEffectAbs GodRaysObj;
+    [SerializeField] private WeatherEffectAbs RainObj;
 
     void Start()
     {
@@ -25,35 +29,37 @@ public class WeatherEffectController : MonoBehaviour
     {
         if (lastTurn != currentTurn)
         {
-            if (isinEffect)
+            lastTurn = currentTurn;
+            if (isInEffect)
             {
-                if (IsEventStart(chanceOfRain * multiplayerOfExit))
+                if (IsEventStart(chanceOfExit))
                 {
-                    return;
-                }
-                if (IsEventStart(chanceOfAsh * multiplayerOfExit))
-                {
-                    return;
-                }
-                if (IsEventStart(chanceOfGodRays * multiplayerOfExit))
-                {
+                    isInEffect = false;
+                    RekindledAhsesObj.DeactivateEffect();
+                    GodRaysObj.DeactivateEffect();
+                    RainObj.DeactivateEffect();
                     return;
                 }
             }
             else
             {
+                isInEffect = true;
                 if (IsEventStart(chanceOfRain))
                 {
+                    RainObj.ActivateEffect();
                     return;
                 }
-                if (IsEventStart(chanceOfAsh))
+                else if (IsEventStart(chanceOfAsh))
                 {
+                    RekindledAhsesObj.ActivateEffect();
                     return;
                 }
-                if (IsEventStart(chanceOfGodRays))
+                else if (IsEventStart(chanceOfGodRays))
                 {
+                    GodRaysObj.ActivateEffect();
                     return;
                 }
+                else isInEffect = false;
             }
         }
     }

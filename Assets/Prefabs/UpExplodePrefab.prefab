@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1110123393076409547}
+  - component: {fileID: 7656056845836413651}
   m_Layer: 0
   m_Name: UpExplodePrefab
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7656056845836413651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110123393076409546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 177e93ea55a9a0243bd035b057416907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforeDeleting: 2
 --- !u!1 &1110123393241743178
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +97,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -318,7 +332,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.62
+      scalar: 0.41
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1017,21 +1031,21 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.23062271
-          inSlope: 0.24765852
-          outSlope: 0.24765852
+          value: 1
+          inSlope: 0.080392644
+          outSlope: 0.080392644
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.07511046
+          outWeight: 0.2101167
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 0.48371875
-          outSlope: 0.48371875
+          value: 0.0033683777
+          inSlope: -2.5633721
+          outSlope: -2.5633721
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.06627393
+          inWeight: 0.08171219
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4794,7 +4808,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fc756808450f1a043a5b0dab9cc6088a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4895,7 +4909,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

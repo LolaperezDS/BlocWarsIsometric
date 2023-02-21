@@ -1,7 +1,6 @@
 // Change board data
 
 using UnityEngine;
-using UnityEngine.WSA;
 
 public static class ActionHandler
 {

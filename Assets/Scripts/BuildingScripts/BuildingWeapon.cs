@@ -30,7 +30,7 @@ public class BuildingWeapon : BuildingWorking
 
     public void Fire(AbstractBuilding toBuilding)
     {
-        if (weaponState == WeaponState.ChargedUp && (Mathf.Abs(toBuilding.Id.x - id.x) > range || Mathf.Abs(toBuilding.Id.y - id.y) > range))
+        if (weaponState == WeaponState.ChargedUp && (Mathf.Abs(toBuilding.Id.x - id.x) <= range || Mathf.Abs(toBuilding.Id.y - id.y) <= range))
         {
             toBuilding.Damage(damage);
             weaponState = WeaponState.Discharged;

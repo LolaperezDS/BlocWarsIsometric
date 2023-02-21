@@ -11,7 +11,7 @@ public static class TurnController
         int index = players.FindIndex((player) => player == CurrentPlayersTurn);
         _player = players[(index + 1) % players.Count];
         
-        
+        BuildingManager.GetOverallPlayerProduce(_player);
     }
 
     public static void UnsafeSetTurn(PlayerInstance playerInstance)

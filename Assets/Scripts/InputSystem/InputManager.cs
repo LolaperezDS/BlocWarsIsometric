@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
                 if (Physics.Raycast(CameraRaycastHandler.InvokeRay(), out hit, Mathf.Infinity, layerMask))
                 {
                     AbstractTile tile = hit.transform.gameObject.GetComponent<AbstractTile>();
+                    Debug.Log("Try to attach: " + tile.Id.ToString());
                     if (TileManager.CanBeAttached(Player.PlayersColor, tile.Id) &&
                         WalletScript.PossibilityToSpend(Player.PlayersColor, ProduceValue.OneAction))
                     {

@@ -44,6 +44,7 @@ public class Client : MonoBehaviour
             if (task.Status == TaskStatus.RanToCompletion)
             {
                 ActionHandler.ApplyAction(ActionWrapper.Unwrap(task.Result));
+                Debug.Log("Принята строка: " + task.Result);
                 task = RecieveMessageAsync();
             }
         }

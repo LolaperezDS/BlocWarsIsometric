@@ -28,7 +28,7 @@ public static class BuildingManager
         {
             foreach (var building in buildingList)
             {
-                if (building.PlayerInstance == player) overallProduce = overallProduce + building.Produce();
+                if (building != null && building.PlayerInstance == player) overallProduce = overallProduce + building.Produce();
             }
         }
 

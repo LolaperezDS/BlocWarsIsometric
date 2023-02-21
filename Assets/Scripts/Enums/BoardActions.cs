@@ -53,10 +53,10 @@ public abstract class BoardAction
 public class BuildBuilding : BoardAction
 {
     private readonly Vector2Int _buildingCoords;
-    public Vector2Int BuildingCoord { get; }
+    public Vector2Int BuildingCoord => _buildingCoords;
 
     private readonly BuildingType _buildingType;
-    public BuildingType Building { get; }
+    public BuildingType Building => _buildingType;
 
     public BuildBuilding(Vector2Int coords, BuildingType buildingType)
     {
@@ -68,7 +68,7 @@ public class BuildBuilding : BoardAction
 public class OwnTile : BoardAction
 {
     private readonly Vector2Int _tileCoords;
-    public Vector2Int TileCoord { get; }
+    public Vector2Int TileCoord => _tileCoords;
 
     public OwnTile(Vector2Int coords)
     {
@@ -79,10 +79,10 @@ public class OwnTile : BoardAction
 public class Shoot : BoardAction
 {
     private readonly Vector2Int _source;
-    public Vector2Int Source { get; }
+    public Vector2Int Source => _source;
 
     private readonly Vector2Int _destination;
-    public Vector2Int Destination { get; }
+    public Vector2Int Destination => _destination;
 
     public Shoot(Vector2Int sourceCoords, Vector2Int destinationCoords)
     {
@@ -95,7 +95,7 @@ public class DestroyBuilding : BoardAction
 {
     private readonly Vector2Int _buildingCoords;
 
-    public Vector2Int BuildingCoord { get; }
+    public Vector2Int BuildingCoord => _buildingCoords;
 
     public DestroyBuilding(Vector2Int coords)
     {
@@ -110,7 +110,7 @@ public class ChangeTurn : BoardAction
 public class SendMessage : BoardAction
 {
     private readonly string _message;
-    public string Message { get; }
+    public string Message => _message;
 
     public SendMessage(string message)
     {
@@ -121,10 +121,10 @@ public class SendMessage : BoardAction
 public class RepairBuilding : BoardAction
 {
     private readonly Vector2Int _buildingCoord;
-    public Vector2Int BuildingCoord { get; }
+    public Vector2Int BuildingCoord => _buildingCoord;
 
     private readonly int _repairAmount;
-    public int RepairAmount { get; }
+    public int RepairAmount => _repairAmount;
 
     public RepairBuilding(Vector2Int buildingCoord, int repairAmount)
     {
@@ -136,7 +136,7 @@ public class RepairBuilding : BoardAction
 public class SpecialAction : BoardAction
 {
     private readonly Vector2Int _coord;
-    public Vector2Int ActionCoord { get; }
+    public Vector2Int ActionCoord => _coord;
     
     public SpecialAction(Vector2Int actionCoord)
     {

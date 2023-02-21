@@ -11,6 +11,12 @@ public static class ActionWrapper
         Dictionary<string, string> wrappedAction = new Dictionary<string, string>();
         wrappedAction["ActionType"] = BoardActionsEnumMethods.ToInt(action).ToString();
         wrappedAction["Info"] = WrapActionInfo(action);
+
+        if (action is OwnTile newAction)
+        {
+            Debug.Log(newAction.TileCoord);
+        }
+        
         return JsonConvert.SerializeObject(wrappedAction);
     }
 
@@ -22,8 +28,7 @@ public static class ActionWrapper
         {
             case BuildBuilding newAction:
             {
-                wrappedInfo["BuildingCoord"] =
-                    String.Format("({0},{1})", newAction.BuildingCoord.x, newAction.BuildingCoord.y);
+                wrappedInfo["BuildingCoord"] = "(" + newAction.BuildingCoord.x + "," + newAction.BuildingCoord.y + ")";
                 wrappedInfo["BuildingType"] = ((int) newAction.Building).ToString();
                 break;
             }
@@ -32,6 +37,7 @@ public static class ActionWrapper
                 Debug.Log("TileCoord: (" + newAction.TileCoord.x + ", " + newAction.TileCoord.y + ")");
                 wrappedInfo["TileCoord"] =
                     String.Format("({0},{1})", newAction.TileCoord.x, newAction.TileCoord.y);
+                Debug.Log(wrappedInfo["TileCoord"]);
                 break;
             }
             case Shoot newAction:

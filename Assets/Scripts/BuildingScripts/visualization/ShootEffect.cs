@@ -4,9 +4,9 @@ public class ShootEffect : MonoBehaviour
 {
     [SerializeField] float timeBeforeImpact;
     [SerializeField] GameObject effectPrefab;
-    GameObject destination;
+    Vector3 destination;
     
-    public void FireImpact(GameObject destination)
+    public void FireImpact(Vector3 destination)
     {
         this.destination = destination;
         Invoke(nameof(DoEffect), timeBeforeImpact);
@@ -16,7 +16,7 @@ public class ShootEffect : MonoBehaviour
     {
         if (effectPrefab != null && destination != null)
         {
-            Instantiate(effectPrefab, destination.transform.position, Quaternion.FromToRotation(this.transform.position, destination.transform.position));
+            Instantiate(effectPrefab, destination, Quaternion.FromToRotation(this.transform.position, destination));
         }
     }
 }

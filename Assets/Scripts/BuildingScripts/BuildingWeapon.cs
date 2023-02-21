@@ -32,9 +32,9 @@ public class BuildingWeapon : BuildingWorking
     {
         if (weaponState == WeaponState.ChargedUp && (Mathf.Abs(toBuilding.Id.x - id.x) <= range || Mathf.Abs(toBuilding.Id.y - id.y) <= range))
         {
+            GetComponent<ShootEffect>().FireImpact(toBuilding.gameObject.transform.position);
             toBuilding.Damage(damage);
             weaponState = WeaponState.Discharged;
-            GetComponent<ShootEffect>().FireImpact(toBuilding.gameObject);
         }
     }
 }

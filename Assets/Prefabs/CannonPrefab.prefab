@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 3537853178623863980}
   - component: {fileID: 3537853178623863970}
   - component: {fileID: 3537853178623863971}
+  - component: {fileID: 9019116425333146353}
   m_Layer: 12
   m_Name: CannonPrefab
   m_TagString: Untagged
@@ -138,6 +139,21 @@ MonoBehaviour:
   weaponState: 0
   damage: 2
   range: 1
+--- !u!114 &9019116425333146353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537853178623863981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb67acc3ed90354ba160e56e9aae037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBeforeImpact: 0
+  effectPrefab: {fileID: 6608027573780335165, guid: 98ef95a9891c8b344a04bc0fd26c4d5c, type: 3}
+  destination: {fileID: 0}
 --- !u!1001 &3537853178391523218
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -41,6 +41,9 @@ public class Client : MonoBehaviour
         {
             if (task == null) task = RecieveMessageAsync();
             isConnected = client.Connected;
+            
+            if (!isConnected) Debug.Log("Отключен от сервера");
+            
             if (task.Status == TaskStatus.RanToCompletion)
             {
                 ActionHandler.ApplyAction(ActionWrapper.Unwrap(task.Result));

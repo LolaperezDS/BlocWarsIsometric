@@ -100,7 +100,9 @@ public class Client : MonoBehaviour
             stringBuilder.Append(Encoding.ASCII.GetString(incommingData));
             if (count == stringBuilder.Length) break;
         }
-
+        
+        Debug.Log("Message: " + stringBuilder);
+        
         return stringBuilder.ToString();
     }
 
@@ -108,7 +110,11 @@ public class Client : MonoBehaviour
     {
         byte[] bytes = new byte[1024];
         stream.Read(bytes, 0, bytes.Length);
+
+        string numberOfBytes = Encoding.ASCII.GetString(bytes);
         
-        return Convert.ToInt32(Encoding.ASCII.GetString(bytes));
+        Debug.Log("Number of bytes we should receive: " + numberOfBytes);
+        
+        return Convert.ToInt32(numberOfBytes);
     }
 }

@@ -41,9 +41,9 @@ public class Client : MonoBehaviour
         {
             if (task == null) task = RecieveMessageAsync();
             isConnected = client.Connected;
-            
+
             if (!isConnected) Debug.Log("Отключен от сервера");
-            
+
             if (task.Status == TaskStatus.RanToCompletion)
             {
                 ActionHandler.ApplyAction(ActionWrapper.Unwrap(task.Result));
@@ -83,26 +83,26 @@ public class Client : MonoBehaviour
     private string RecieveHandler(int buffSize)
     {
         int numberOfBytes = GetNumberOfBytes();
-        
+
         StringBuilder stringBuilder = new StringBuilder();
         byte[] bytes = new byte[buffSize];
         int length;
-        
+
         // Read incomming stream into byte arrary. 					
         while (stringBuilder.ToString().Length != numberOfBytes)
         {
             length = stream.Read(bytes, 0, bytes.Length);
             if (length == 0) break;
             int count = stringBuilder.Length;
-            var incommingData = new byte[length]; 						
-            Array.Copy(bytes, 0, incommingData, 0, length); 						
+            var incommingData = new byte[length];
+            Array.Copy(bytes, 0, incommingData, 0, length);
             // Convert byte array to string message. 						
             stringBuilder.Append(Encoding.ASCII.GetString(incommingData));
             if (count == stringBuilder.Length) break;
         }
-        
-        Debug.Log("Message: " + stringBuilder);
-        
+
+        Debug.Log("Number of chars received: " + stringBuilder.Length + "\nMessage: " + stringBuilder);
+
         return stringBuilder.ToString();
     }
 
@@ -112,9 +112,9 @@ public class Client : MonoBehaviour
         stream.Read(bytes, 0, bytes.Length);
 
         string numberOfBytes = Encoding.ASCII.GetString(bytes);
-        
+
         Debug.Log("Number of bytes we should receive: " + numberOfBytes);
-        
+
         return Convert.ToInt32(numberOfBytes);
     }
 }

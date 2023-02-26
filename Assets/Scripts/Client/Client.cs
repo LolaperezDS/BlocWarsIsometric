@@ -81,9 +81,9 @@ public class Client : MonoBehaviour
     }
 
 
-    private async Task<String> RecieveMessageAsync(int buffSize = BUFFER_STANDART_SIZE)
+    private async Task<String> RecieveMessageAsync()
     {
-        return await Task<String>.Run(() => RecieveHandler(buffSize));
+        return await Task<String>.Run(() => RecieveHandler());
     }
 
     // private string RecieveHandler(int buffSize)
@@ -112,7 +112,7 @@ public class Client : MonoBehaviour
     //     return stringBuilder.ToString();
     // }
     
-    private string RecieveHandler(int buffSize)
+    private string RecieveHandler()
     {
         GetZeroByte();
             
@@ -124,7 +124,8 @@ public class Client : MonoBehaviour
             int count = stream.Read(msg, 0, 1);
             if (count == 0)
             {
-                throw new Exception("Cannot read from tcp connection");
+                // throw new Exception("Cannot read from tcp connection");
+                continue;
             }
 
             if (msg[0] == 0x01)
@@ -135,6 +136,7 @@ public class Client : MonoBehaviour
             stringBuilder.Append(Encoding.Default.GetString(msg, 0, 1));
         }
 
+        Debug.Log("Получено сообщение:" + stringBuilder.ToString());
         return stringBuilder.ToString();
     }
 
@@ -158,7 +160,8 @@ public class Client : MonoBehaviour
             int count = stream.Read(bytes, 0, 1);
             if (count == 0)
             {
-                throw new Exception("Cannot read from tcp connection");
+                //throw new Exception("Cannot read from tcp connection");
+                continue;
             }
 
             if (bytes[0] == 0x00)

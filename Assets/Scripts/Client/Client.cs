@@ -68,10 +68,16 @@ public class Client : MonoBehaviour
 
     private void SendHandler(string message, int buffSize)
     {
-        byte[] msg = new byte[buffSize];
-        msg = Encoding.Default.GetBytes(message); // конвертируем строку в массив байт
-
-        stream.Write(msg, 0, msg.Length); // отправляем сообщение
+        // byte[] msg = new byte[buffSize];
+        // msg = Encoding.Default.GetBytes(message); // конвертируем строку в массив байт
+        //
+        // stream.Write(msg, 0, msg.Length); // отправляем сообщение
+        
+        byte[] msg = new byte[message.Length + 2];
+        msg[0] = 0x00;
+        Encoding.Default.GetBytes(message).CopyTo(msg, 1);  // конвертируем строку в массив байт
+        msg[message.Length + 2 - 1] = 0x01;
+        stream.Write(msg, 0, msg.Length);     // отправляем сообщение
     }
 
 
@@ -80,41 +86,85 @@ public class Client : MonoBehaviour
         return await Task<String>.Run(() => RecieveHandler(buffSize));
     }
 
+    // private string RecieveHandler(int buffSize)
+    // {
+    //     int numberOfBytes = GetNumberOfBytes();
+    //
+    //     StringBuilder stringBuilder = new StringBuilder();
+    //     byte[] bytes = new byte[buffSize];
+    //     int length;
+    //
+    //     // Read incomming stream into byte arrary. 					
+    //     while (stringBuilder.ToString().Length != numberOfBytes)
+    //     {
+    //         length = stream.Read(bytes, 0, bytes.Length);
+    //         if (length == 0) break;
+    //         int count = stringBuilder.Length;
+    //         var incommingData = new byte[length];
+    //         Array.Copy(bytes, 0, incommingData, 0, length);
+    //         // Convert byte array to string message. 						
+    //         stringBuilder.Append(Encoding.ASCII.GetString(incommingData));
+    //         if (count == stringBuilder.Length) break;
+    //     }
+    //
+    //     Debug.Log("Number of chars received: " + stringBuilder.Length + "\nMessage: " + stringBuilder);
+    //
+    //     return stringBuilder.ToString();
+    // }
+    
     private string RecieveHandler(int buffSize)
     {
-        int numberOfBytes = GetNumberOfBytes();
-
+        GetZeroByte();
+            
         StringBuilder stringBuilder = new StringBuilder();
-        byte[] bytes = new byte[buffSize];
-        int length;
-
-        // Read incomming stream into byte arrary. 					
-        while (stringBuilder.ToString().Length != numberOfBytes)
+        byte[] msg = new byte[1];
+            
+        while (true)
         {
-            length = stream.Read(bytes, 0, bytes.Length);
-            if (length == 0) break;
-            int count = stringBuilder.Length;
-            var incommingData = new byte[length];
-            Array.Copy(bytes, 0, incommingData, 0, length);
-            // Convert byte array to string message. 						
-            stringBuilder.Append(Encoding.ASCII.GetString(incommingData));
-            if (count == stringBuilder.Length) break;
-        }
+            int count = stream.Read(msg, 0, 1);
+            if (count == 0)
+            {
+                throw new Exception("Cannot read from tcp connection");
+            }
 
-        Debug.Log("Number of chars received: " + stringBuilder.Length + "\nMessage: " + stringBuilder);
+            if (msg[0] == 0x01)
+            {
+                break;
+            }
+
+            stringBuilder.Append(Encoding.Default.GetString(msg, 0, 1));
+        }
 
         return stringBuilder.ToString();
     }
 
-    private int GetNumberOfBytes()
+    // private int GetNumberOfBytes()
+    // {
+    //     byte[] bytes = new byte[1024];
+    //     stream.Read(bytes, 0, bytes.Length);
+    //
+    //     string numberOfBytes = Encoding.ASCII.GetString(bytes);
+    //
+    //     Debug.Log("Number of bytes we should receive: " + numberOfBytes);
+    //
+    //     return Convert.ToInt32(numberOfBytes);
+    // }
+    
+    private void GetZeroByte()
     {
-        byte[] bytes = new byte[1024];
-        stream.Read(bytes, 0, bytes.Length);
+        byte[] bytes = new byte[1]; 
+        while (true)
+        {
+            int count = stream.Read(bytes, 0, 1);
+            if (count == 0)
+            {
+                throw new Exception("Cannot read from tcp connection");
+            }
 
-        string numberOfBytes = Encoding.ASCII.GetString(bytes);
-
-        Debug.Log("Number of bytes we should receive: " + numberOfBytes);
-
-        return Convert.ToInt32(numberOfBytes);
+            if (bytes[0] == 0x00)
+            {
+                return;
+            }
+        }
     }
 }

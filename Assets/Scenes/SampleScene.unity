@@ -10119,7 +10119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039b76346944cb84ea88e744daa18b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSunIntensity: 1.5
+  MaxSunIntensity: 1.25
   ColorSunR:
     serializedVersion: 2
     m_Curve:
@@ -10576,7 +10576,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MaxMoonIntensity: 1.3
+  MaxMoonIntensity: 1.25
   ColorMoonI:
     serializedVersion: 2
     m_Curve:
@@ -10732,6 +10732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ece1cdc4f31bc44ad1423ef8e1332c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
   _particleSystem: {fileID: 235064589}
   cloudFactorOnActivate: 0.9
 --- !u!114 &316403096
@@ -10746,6 +10747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459dcb3c5e6abb146a5e527996da42de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
   _particleSystem: {fileID: 1741878633}
   cloudFactorOnActivate: 0.7
 --- !u!114 &316403097
@@ -11324,8 +11326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729c18c9b294fd749b5d64ac3d554789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 1337
-  host: localhost
 --- !u!1 &1367644722
 GameObject:
   m_ObjectHideFlags: 0

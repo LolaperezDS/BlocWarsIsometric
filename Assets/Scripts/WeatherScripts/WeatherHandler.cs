@@ -62,6 +62,7 @@ public class WeatherHandler : MonoBehaviour
     private void Start()
     {
         currentContiniousTime = WeatherHandler.RangeFromDayTimes(currentTime);
+        SetTimeRaw(currentContiniousTime);
     }
     private void Update()
     {
@@ -102,7 +103,7 @@ public class WeatherHandler : MonoBehaviour
         switch (dayTime)
         {
             case DayTimes.Morning:
-                return 0.35f;
+                return 0.38f;
             case DayTimes.Noon:
                 return 0.55f;
             case DayTimes.Evening:

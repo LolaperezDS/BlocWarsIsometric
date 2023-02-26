@@ -9,7 +9,7 @@ public class WeatherEffectController : MonoBehaviour
 
     private bool isInEffect = false;
 
-    private float chanceOfExit = 3;
+    private float chanceOfExit = 0.15f;
     private float chanceOfRain = 0.08f;
     private float chanceOfAsh = 0.05f;
     private float chanceOfGodRays = 0.05f;

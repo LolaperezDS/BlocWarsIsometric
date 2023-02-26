@@ -18,6 +18,8 @@ public class TimeController : MonoBehaviour
     {
         if (lastTurn != currentTurn && currentTurn == PlayerInstance.Red)
         {
+            lastTurn = currentTurn;
+
             if (timeChangeC != null) StopCoroutine(timeChangeC);
             DayTimes dayTime = weatherHandler.CurrentTime;
             if (dayTime == DayTimes.MidNight) dayTime = DayTimes.Morning;

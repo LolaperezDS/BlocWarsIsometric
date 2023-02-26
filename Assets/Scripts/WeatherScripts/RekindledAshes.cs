@@ -8,6 +8,7 @@ public class RekindledAshes : WeatherEffectAbs
 
     public override void ActivateEffect()
     {
+        IsActive = true;
         StartCoroutine(GetComponent<WeatherHandler>().ContiniousChangeClouds(cloudFactorOnActivate));
         if (_particleSystem != null && !_particleSystem.isPlaying)
         {
@@ -17,6 +18,7 @@ public class RekindledAshes : WeatherEffectAbs
 
     public override void DeactivateEffect()
     {
+        IsActive = false;
         StartCoroutine(GetComponent<WeatherHandler>().ContiniousChangeClouds(cloudFactorOnDeactivate));
         if (_particleSystem != null && _particleSystem.isPlaying)
         {

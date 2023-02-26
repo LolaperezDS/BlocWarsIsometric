@@ -12,7 +12,7 @@ public class GameInfoOut : MonoBehaviour
     {
         toOut = "Now turn: " + TurnController.CurrentPlayersTurn.ToString() + "\n\n";
         toOut += "Your color: " + Player.PlayersColor.ToString() + "\n";
-        toOut += "Your Gold: " + WalletScript.Wallets[(int)Player.PlayersColor].gold;
+        toOut += "Your Gold: " + WalletScript.Wallets[(int)Player.PlayersColor].gold + "\n";
         toOut += "Your Actions: " + WalletScript.Wallets[(int)Player.PlayersColor].actions;
         text.text = toOut;
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Light))]
+
 public class AutoDeactivate : MonoBehaviour
 {
     private Light light;

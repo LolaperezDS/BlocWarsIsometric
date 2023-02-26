@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 public class Client : MonoBehaviour
 {
     public bool isConnected { get; protected set; } = false;
-    [SerializeField] private int port;
-    [SerializeField] private string host;
+    private int port => GlobalSettings.HostPort;
+    private string host => GlobalSettings.HostIP;
 
     private NetworkStream stream;
     private TcpClient client;
@@ -26,11 +26,11 @@ public class Client : MonoBehaviour
         client.ReceiveBufferSize = LARGE_BUFFER_SIZE;
         stream = client.GetStream();
         Debug.Log("Запрос на подключение отправлен");
-        SendMessageAsync(pd);
+        SendHandler(pd, BUFFER_STANDART_SIZE);
         // При соединении, сервер отправляет BoardStatement и Order => (PlayerInstance)
         Debug.Log("Информация о столе принята");
         isConnected = true;
-        return RecieveHandler(LARGE_BUFFER_SIZE);
+        return RecieveHandler();
     }
 
 

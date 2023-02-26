@@ -1,0 +1,10 @@
+/*   First 3 lines for commentaries
+/*   Lines are separate by ";" char
+/*   Chose last element, first for explanations
+Vsync 0 or 1	;1
+TFPS		;144
+NickName	;Untilted
+Fullscreen	;1
+MusicV 0-1	;0.5
+FXV 0-1		;0.5
+Graphics Quality 0-govno 1-norm 2-eblan? u tebya comp boom boom	 ;1

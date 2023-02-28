@@ -3,18 +3,15 @@ using UnityEngine;
 
 public class AutoDeactivate : MonoBehaviour
 {
-    private Light light;
-
-    private void Start() => light = GetComponent<Light>();
     void Update()
     {
-        if (light.intensity <= 0.1) light.enabled = false;
-        else light.enabled = true;
+        if (GetComponent<Light>().intensity <= 0.1) GetComponent<Light>().enabled = false;
+        else GetComponent<Light>().enabled = true;
 
-        if (light.enabled)
+        if (GetComponent<Light>().enabled)
         {
-            if (light.intensity <= 0.3) light.shadows = LightShadows.None;
-            else light.shadows = LightShadows.Hard;
+            if (GetComponent<Light>().intensity <= 0.3) GetComponent<Light>().shadows = LightShadows.None;
+            else GetComponent<Light>().shadows = LightShadows.Hard;
         }
     }
 }

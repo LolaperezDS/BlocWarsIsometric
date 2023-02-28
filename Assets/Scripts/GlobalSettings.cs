@@ -6,7 +6,7 @@ using UnityEngine;
 
 public static class GlobalSettings
 {
-    public static string NickName = "Test";
+    public static string NickName = "Default_Ocherednyara";
     public static string HostIP = "localhost";
     public static int HostPort = 1337;
 
@@ -33,7 +33,6 @@ public static class GlobalSettings
         // Применение
         QualitySettings.vSyncCount = Convert.ToInt32(splittedData[0].Split(';')[1]);
         Application.targetFrameRate = Convert.ToInt32(splittedData[1].Split(';')[1]);
-        NickName = splittedData[2].Split(';')[1];
-        // Screen.fullScreen = Convert.ToBoolean(Convert.ToInt32(splittedData[3].Split(';')[1]));
+        Screen.fullScreen = Convert.ToBoolean(Convert.ToInt32(splittedData[2].Split(';')[1]));
     }
 }

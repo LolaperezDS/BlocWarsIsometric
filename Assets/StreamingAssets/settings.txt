@@ -3,7 +3,6 @@
 /*   Chose last element, first for explanations
 Vsync 0 or 1	;1
 TFPS		;144
-NickName	;Untilted
 Fullscreen	;1
 MusicV 0-1	;0.5
 FXV 0-1		;0.5

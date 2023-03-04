@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AttachAnimation : AbsVisualEffect
+[RequireComponent(typeof(AbstractTile))]
+public class AttachAnimation : MonoBehaviour
 {
-    protected override void ActivateEffect()
+    [SerializeField] private GameObject attachEffectPrefab;
+
+    public void ActivateEffect()
     {
-        throw new System.NotImplementedException();
+        Instantiate(attachEffectPrefab, GetComponent<AbstractTile>().transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
     }
 }

@@ -10,8 +10,12 @@ public enum WeaponState
 public class BuildingWeapon : BuildingWorking
 {
     [SerializeField] private WeaponState weaponState = WeaponState.Discharged;
+    public WeaponState WeaponState => weaponState;
     [SerializeField] private int damage;
     [SerializeField] private int range;
+
+    private AbstractBuilding lastDestination;
+    public AbstractBuilding LastDest => lastDestination;
 
     public override ProduceValue Produce()
     {
@@ -30,10 +34,11 @@ public class BuildingWeapon : BuildingWorking
 
     public void Fire(AbstractBuilding toBuilding)
     {
-        if (weaponState == WeaponState.ChargedUp && (Mathf.Abs(toBuilding.Id.x - id.x) <= range || Mathf.Abs(toBuilding.Id.y - id.y) <= range))
+        lastDestination = toBuilding;
+        if (weaponState == WeaponState.ChargedUp && (Mathf.Abs(lastDestination.Id.x - id.x) <= range || Mathf.Abs(lastDestination.Id.y - id.y) <= range))
         {
-            GetComponent<ShootEffect>().FireImpact(toBuilding.gameObject.transform.position);
-            toBuilding.Damage(damage);
+            GetComponent<ShootEffect>().FireImpact(lastDestination.gameObject.transform.position);
+            lastDestination.Damage(damage);
             weaponState = WeaponState.Discharged;
         }
     }

@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 3537853178623863980}
   - component: {fileID: 3537853178623863970}
   - component: {fileID: 3537853178623863971}
+  - component: {fileID: 8257876216699286438}
   - component: {fileID: 9019116425333146353}
   m_Layer: 12
   m_Name: CannonPrefab
@@ -139,6 +140,19 @@ MonoBehaviour:
   weaponState: 0
   damage: 2
   range: 1
+--- !u!114 &8257876216699286438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3537853178623863981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be106230fdb8a742a8d5cdcc831d65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dulo: {fileID: 3537853178135101078}
 --- !u!114 &9019116425333146353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBeforeImpact: 0
   effectPrefab: {fileID: 6608027573780335165, guid: 98ef95a9891c8b344a04bc0fd26c4d5c, type: 3}
-  destination: {fileID: 0}
 --- !u!1001 &3537853178391523218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,11 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3ce5b4f2e4a8d944aa455fd9cd0e4369, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0000000754979
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3ce5b4f2e4a8d944aa455fd9cd0e4369, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3ce5b4f2e4a8d944aa455fd9cd0e4369, type: 3}
       propertyPath: m_LocalRotation.y
@@ -203,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3ce5b4f2e4a8d944aa455fd9cd0e4369, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3ce5b4f2e4a8d944aa455fd9cd0e4369, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

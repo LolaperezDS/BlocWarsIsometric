@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 3311645152174289000}
   - component: {fileID: 1538480331368790091}
   - component: {fileID: -7103276667274160564}
+  - component: {fileID: 5870964265837076213}
   m_Layer: 11
   m_Name: ForestPrefab
   m_TagString: Untagged
@@ -414,6 +415,19 @@ MonoBehaviour:
   greenColor: {fileID: 2100000, guid: 0d9231a80e08da24a9d6dc28ac143663, type: 2}
   yellowColor: {fileID: 2100000, guid: 4672c6f65fbf4ec46a5ac3c5de85efff, type: 2}
   emptyColor: {fileID: 2100000, guid: 0807314e3ae267b4b9b89b18a24fa059, type: 2}
+--- !u!114 &5870964265837076213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987344140485641722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c743be31b72ceec458882f14ef7b5814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachEffectPrefab: {fileID: 4866701208631690406, guid: 6b4d02bdaf4c1be4ab98c8d31647c887, type: 3}
 --- !u!1 &8169777868388005024
 GameObject:
   m_ObjectHideFlags: 0

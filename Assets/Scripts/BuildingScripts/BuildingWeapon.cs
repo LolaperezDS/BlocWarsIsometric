@@ -38,6 +38,8 @@ public class BuildingWeapon : BuildingWorking
         if (weaponState == WeaponState.ChargedUp && (Mathf.Abs(lastDestination.Id.x - id.x) <= range || Mathf.Abs(lastDestination.Id.y - id.y) <= range))
         {
             GetComponent<ShootEffect>().FireImpact(lastDestination.gameObject.transform.position);
+            GetComponent<SmokeEffect>().SmokeImpact();
+
             lastDestination.Damage(damage);
             weaponState = WeaponState.Discharged;
         }

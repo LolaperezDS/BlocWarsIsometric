@@ -1,4 +1,6 @@
 # BlocWarsIsometric
 
-![image](https://user-images.githubusercontent.com/61661965/219717932-f14a2a8d-5e82-419f-9192-31220abd0b96.png)
-![image](https://user-images.githubusercontent.com/61661965/219718007-474e07c8-113a-408d-ac41-eb2a7172d961.png)
+Online session turn-based strategy in a fantasy setting. The goal of the game is to destroy the main buildings of all opponents with the help of competent development and management of resources.
+
+![image](https://user-images.githubusercontent.com/61661965/226204436-d1c5896b-5f67-4e82-8139-cc36d337233b.png)
+![image](https://user-images.githubusercontent.com/61661965/226204453-d118eef1-720a-4bee-ad66-77e6590c5ec3.png)

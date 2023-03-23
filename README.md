@@ -1,4 +1,4 @@
-# BlocWarsIsometric
+# Block Wars Isometric
 
 Online session turn-based strategy in a fantasy setting. The goal of the game is to destroy the main buildings of all opponents with the help of competent development and management of resources.
 
